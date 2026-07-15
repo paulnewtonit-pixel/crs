@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build My Case | CourtReady Support</title>
+  <meta name="description" content="Build and organise an existing CRS case through a guided interview.">
+  <link rel="icon" href="../assets/crs-logo.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="casebuilder.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="mckenzie-config.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <a class="brand" href="../index.html" aria-label="CourtReadySupport.co.uk home">
+    <img src="../assets/crs-logo.png" alt="" width="64" height="64">
+    <span class="brand-name">CourtReadySupport.co.uk</span>
+    <span class="brand-short">CourtReady Support</span>
+  </a>
+  <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
+    <span class="menu-lines" aria-hidden="true"></span>
+    <span class="sr-only">Menu</span>
+  </button>
+  <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+    <a href="../index.html#support">Support</a>
+    <a href="../index.html#prepare">Prepare</a>
+    <a href="#" id="myCasesNav">My Cases</a>
+    <a href="../roadmap.html">Roadmap</a>
+    <a href="../legal-hub/">Legal hub</a>
+    <a href="../index.html#limits">Limits</a>
+    <a href="../index.html#questions">Questions</a>
+    <a href="https://mckenziecms.co.uk/">McKenzieCMS</a>
+    <a class="nav-action" href="../index.html#enquiry">Enquire</a>
+  </nav>
+</header>
+<main id="main" class="builder-shell">
+  <section class="builder-hero"><div class="container builder-hero-grid">
+    <div><p class="kicker">CourtReady Investigation Platform — Version 4.0</p><h1>Tell us the story. We will help structure the case.</h1><p class="builder-lead">Start with what happened in your own words. CourtReady will organise the material into reviewable facts, evidence, gaps, issues and chronology.</p></div>
+    <div class="privacy-panel"><strong>Development release</strong><p>Version 4.0 makes Investigation the primary experience while preserving review-before-publish control and McKenzieCMS integration.</p></div>
+  </div></section>
+
+  <section class="container builder-main">
+    <div id="statusBanner" class="status-banner" aria-live="polite"></div>
+
+    <section id="authPanel" class="builder-card auth-panel">
+      <p class="step-label">Secure access</p><h2>Sign in with your existing CRS account</h2>
+      <div class="auth-grid"><label>Email<input id="email" type="email" autocomplete="email"></label><label>Password<input id="password" type="password" autocomplete="current-password"></label></div>
+      <div class="button-row"><button id="signIn" class="button primary" type="button">Sign in</button><button id="signUp" class="button secondary" type="button">Create account</button></div>
+      <p id="authMessage" class="form-message"></p>
+    </section>
+
+    <section id="caseSelectionPanel" class="hidden">
+      <div class="signed-in-strip"><div><p class="step-label">My Cases</p><strong id="signedInIdentity">Your CRS account is connected.</strong><p>Select a case to continue building it here.</p></div><button id="signOut" class="button secondary compact" type="button">Sign out</button></div>
+      <section class="new-case-callout" aria-labelledby="newCaseHeading">
+        <div>
+          <p class="step-label">New matter</p>
+          <h2 id="newCaseHeading">Need to create a new case?</h2>
+          <p>Use this only where the matter does not already appear in the list below. The Case Builder will check the case name and case number before creating anything.</p>
+        </div>
+        <button id="newCase" class="button primary" type="button">Create New Case</button>
+      </section>
+      <section class="builder-card">
+        <div class="section-heading"><div><h2>Your existing cases</h2><p>Select an existing CMS case to continue building it without creating a duplicate.</p></div></div>
+        <div id="casesLoading" class="empty-state">Loading your cases…</div>
+        <div id="caseList" class="case-list"></div>
+        <div class="case-list-footer"><span>Can’t see the matter you need?</span><button id="newCaseBottom" class="button secondary" type="button">Create New Case</button></div>
+      </section>
+    </section>
+
+    <section id="caseDashboardPanel" class="hidden">
+      <div class="active-case-strip"><div><p class="step-label">Current case</p><strong id="dashboardCaseName"></strong><p id="dashboardCaseMeta"></p></div><div class="button-row no-margin"><button id="dashboardChangeCase" class="button secondary compact" type="button">Change case</button><a id="dashboardWorkspaceLink" class="button secondary compact" href="https://mckenziecms.co.uk/">Open full workspace</a></div></div>
+      <section class="dashboard-welcome">
+        <div><p class="step-label">Case Builder dashboard</p><h2 id="dashboardHeading">Continue building your case</h2><p id="dashboardNextText">We will take you to the next incomplete section.</p></div>
+        <button id="continueInterview" class="button primary dashboard-primary" type="button">Continue Building My Case</button>
+      </section>
+      <div class="dashboard-grid">
+        <article class="dashboard-card"><p class="step-label">Overall progress</p><div class="dashboard-progress"><span id="dashboardProgressBar"></span></div><strong id="dashboardProgressText">0% complete</strong><p id="dashboardLastUpdated">Not yet saved</p></article>
+        <article class="dashboard-card"><p class="step-label">Next event</p><strong id="dashboardNextEvent">No hearing or deadline recorded</strong><p id="dashboardNextEventDetail">Add the next court date when known.</p></article>
+        <article class="dashboard-card"><p class="step-label">Available material</p><strong id="dashboardEvidenceCount">0 categories recorded</strong><p>Evidence can be reviewed and linked in later modules.</p></article>
+        <article class="dashboard-card"><p class="step-label">Immediate focus</p><strong id="dashboardFocus">Confirm the introductory information</strong><p id="dashboardFocusDetail">Complete missing sections before moving into evidence-led modules.</p></article>
+      </div>
+      <section class="builder-card dashboard-sections-card">
+        <div class="section-heading"><div><h2>Case-building sections</h2><p>Review a completed section or continue from the next incomplete one.</p></div></div>
+        <div id="dashboardSections" class="dashboard-sections"></div>
+      </section>
+    </section>
+
+    <section id="builderPanel" class="hidden">
+      <div class="active-case-strip"><div><p class="step-label">Current case</p><strong id="activeCaseName"></strong><p id="activeCaseMeta"></p></div><div class="button-row no-margin"><button id="changeCase" class="button secondary compact" type="button">Change case</button><a id="builderWorkspaceLink" class="button secondary compact" href="https://mckenziecms.co.uk/">Open full workspace</a></div></div>
+      <div class="builder-layout">
+        <aside class="progress-card"><p class="step-label">Your progress</p><div class="progress-track"><span id="progressBar"></span></div><p id="progressText">Step 1 of 5</p><ol id="stepList" class="step-list"><li data-step="1">Case identity</li><li data-step="2">People involved</li><li data-step="3">Current position</li><li data-step="4">Court dates</li><li data-step="5">Available material</li></ol></aside>
+        <section class="builder-card interview-card"><form id="caseForm">
+          <div class="form-step" data-step="1"><p class="step-label">Step 1</p><h2>Confirm the case details</h2><p class="context-note">Known CMS information has been filled in. Correct it only where necessary.</p><div class="form-grid two-col">
+            <label>Case or matter name *<input name="name" required></label>
+            <label>Your role *<select name="user_role" required><option value="">Select your role</option><option>Applicant</option><option>Respondent</option><option>Litigant in Person</option><option>Supporting professional</option><option>Other</option></select></label>
+            <label>Type of proceedings *<select name="case_type" required><option value="">Choose the closest match</option><option>Financial remedy</option><option>Child arrangements</option><option>Domestic abuse / protective order</option><option>Divorce or dissolution</option><option>Enforcement</option><option>Other family proceedings</option><option>Not sure</option></select></label>
+            <label>Current stage<select name="stage"><option value="">Not sure</option><option>Considering an application</option><option>Application received</option><option>Before first hearing</option><option>Directions / disclosure</option><option>Before settlement hearing</option><option>Before final hearing</option><option>After an order</option></select></label>
+            <label>Court<input name="court"></label><label>Case number<input name="case_number"></label>
+          </div></div>
+          <div class="form-step hidden" data-step="2"><p class="step-label">Step 2</p><h2>Who is involved?</h2><div class="form-grid two-col"><label>Applicant’s name<input name="applicant_name"></label><label>Respondent’s name<input name="respondent_name"></label><label>Children or dependants<textarea name="children" rows="3"></textarea></label><label>Representatives or support people<textarea name="representatives" rows="3"></textarea></label></div></div>
+          <div class="form-step hidden" data-step="3"><p class="step-label">Step 3</p><h2>What is happening now?</h2><div class="form-grid"><label>Brief factual background *<textarea name="background" required rows="6"></textarea></label><label>Outcome sought<textarea name="objective" rows="4"></textarea></label><label>Main issue or disagreement<textarea name="key_issue" rows="4"></textarea></label><label>Most urgent concern<textarea name="urgent_concern" rows="3"></textarea></label></div></div>
+          <div class="form-step hidden" data-step="4"><p class="step-label">Step 4</p><h2>Confirm the immediate dates</h2><div class="form-grid two-col"><label>Next hearing date<input name="next_hearing" type="date"></label><label>Hearing type<input name="hearing_type"></label><label>Next deadline<input name="next_deadline" type="date"></label><label>Deadline description<input name="deadline_description"></label><label class="full-width">Existing orders or directions<textarea name="orders" rows="4"></textarea></label></div></div>
+          <div class="form-step hidden" data-step="5"><p class="step-label">Step 5</p><h2>What material do you already have?</h2><div class="check-grid"><label><input type="checkbox" name="materials" value="Court orders"> Court orders</label><label><input type="checkbox" name="materials" value="Applications and responses"> Applications and responses</label><label><input type="checkbox" name="materials" value="Witness statements"> Witness statements</label><label><input type="checkbox" name="materials" value="Correspondence"> Correspondence</label><label><input type="checkbox" name="materials" value="Bank or financial records"> Bank or financial records</label><label><input type="checkbox" name="materials" value="Messages, emails or photographs"> Messages, emails or photographs</label></div><label>Other evidence or documents<textarea name="other_material" rows="4"></textarea></label><div class="review-box"><strong id="saveModeTitle">Update this case</strong><p id="saveModeText">Your answers will enrich the selected CMS case. They will not create another case.</p></div></div>
+          <div class="form-actions"><button id="previous" class="button secondary hidden" type="button">Previous</button><button id="saveProgress" class="button secondary" type="button">Save progress</button><button id="next" class="button primary" type="button">Continue</button><button id="saveCase" class="button primary hidden" type="submit">Save to this case</button></div><p id="saveMessage" class="form-message"></p>
+        </form></section>
+      </div>
+    </section>
+
+
+    <section id="propertyPanel" class="hidden">
+      <div class="active-case-strip"><div><p class="step-label">Current case</p><strong id="propertyCaseName"></strong><p id="propertyCaseMeta"></p></div><div class="button-row no-margin"><button id="propertyBackDashboard" class="button secondary compact" type="button">Case dashboard</button><a id="propertyWorkspaceLink" class="button secondary compact" href="https://mckenziecms.co.uk/">Open full workspace</a></div></div>
+      <div class="builder-layout">
+        <aside class="progress-card"><p class="step-label">Property and housing</p><div class="progress-track"><span id="propertyProgressBar"></span></div><p id="propertyProgressText">Step 1 of 4</p><ol id="propertyStepList" class="step-list"><li data-property-step="1">Property overview</li><li data-property-step="2">Ownership and value</li><li data-property-step="3">Evidence and disputes</li><li data-property-step="4">Housing needs and outcome</li></ol></aside>
+        <section class="builder-card interview-card"><form id="propertyForm">
+          <div class="property-step" data-property-step="1"><p class="step-label">Property module — Step 1</p><h2>Which properties are relevant?</h2><p class="context-note">Include the family home, any other UK property, and any property abroad that may be relevant.</p><div class="form-grid two-col">
+            <label>Family home address<textarea name="family_home_address" rows="3"></textarea></label>
+            <label>Who currently lives there?<textarea name="family_home_occupants" rows="3"></textarea></label>
+            <label>Are there any other UK properties?<select name="other_uk_property"><option value="">Select</option><option>No</option><option>Yes</option><option>Not sure</option></select></label>
+            <label>Are there any foreign properties?<select name="foreign_property"><option value="">Select</option><option>No</option><option>Yes</option><option>Not sure</option></select></label>
+            <label class="full-width">Describe any other or foreign property<textarea name="other_property_details" rows="4" placeholder="Address, country, who uses it, and why it may be relevant"></textarea></label>
+          </div></div>
+          <div class="property-step hidden" data-property-step="2"><p class="step-label">Property module — Step 2</p><h2>Ownership, mortgage and value</h2><div class="form-grid two-col">
+            <label>Registered owner(s)<input name="registered_owners"></label><label>Is beneficial ownership disputed?<select name="beneficial_ownership_disputed"><option value="">Select</option><option>No</option><option>Yes</option><option>Not sure</option></select></label>
+            <label>Estimated current value (£)<input name="estimated_value" type="number" min="0" step="1"></label><label>Valuation date<input name="valuation_date" type="date"></label>
+            <label>Outstanding mortgage (£)<input name="mortgage_balance" type="number" min="0" step="1"></label><label>Mortgage lender<input name="mortgage_lender"></label>
+            <label class="full-width">How and when was the property acquired or transferred?<textarea name="acquisition_details" rows="4"></textarea></label>
+          </div></div>
+          <div class="property-step hidden" data-property-step="3"><p class="step-label">Property module — Step 3</p><h2>Evidence, disagreements and missing information</h2><div class="form-grid">
+            <label>What documents are available?<textarea name="property_evidence" rows="4" placeholder="Land Registry title, mortgage statement, valuation, purchase documents, correspondence..."></textarea></label>
+            <label>What is disputed?<textarea name="property_disputes" rows="4" placeholder="Ownership, value, source of funds, occupation, sale, transfer..."></textarea></label>
+            <label>What important information or documents are missing?<textarea name="property_gaps" rows="4"></textarea></label>
+            <label>Key dates for the chronology<textarea name="property_dates" rows="3" placeholder="Purchase, transfer, valuation, separation, mortgage changes..."></textarea></label>
+          </div></div>
+          <div class="property-step hidden" data-property-step="4"><p class="step-label">Property module — Step 4</p><h2>Housing needs and proposed outcome</h2><div class="form-grid">
+            <label>What are your present housing needs?<textarea name="user_housing_needs" rows="4"></textarea></label>
+            <label>What are the other party’s apparent housing needs?<textarea name="other_housing_needs" rows="4"></textarea></label>
+            <label>What outcome do you propose for the property?<textarea name="property_outcome" rows="4" placeholder="Sale, transfer, deferred sale, buy-out, valuation, occupation period..."></textarea></label>
+            <label>Why is that outcome fair and workable?<textarea name="property_rationale" rows="4"></textarea></label>
+          </div></div>
+          <div class="form-actions"><button id="propertyPrevious" class="button secondary" type="button">Previous</button><button id="propertyNext" class="button primary" type="button">Next</button><button id="propertySave" class="button primary hidden" type="submit">Save Property and Housing</button><button id="propertySaveProgress" class="text-button" type="button">Save progress</button></div><p id="propertySaveMessage" class="form-message" aria-live="polite"></p>
+        </form></section>
+      </div>
+    </section>
+
+    <section id="bankPanel" class="hidden">
+      <div class="active-case-strip"><div><p class="step-label">Current case</p><strong id="bankCaseName"></strong><p id="bankCaseMeta"></p></div><div class="button-row no-margin"><button id="bankBackDashboard" class="button secondary compact" type="button">Case dashboard</button><a id="bankWorkspaceLink" class="button secondary compact" href="https://mckenziecms.co.uk/">Open full workspace</a></div></div>
+      <div class="builder-layout">
+        <aside class="progress-card"><p class="step-label">Bank accounts and transferred funds</p><div class="progress-track"><span id="bankProgressBar"></span></div><p id="bankProgressText">Step 1 of 4</p><ol id="bankStepList" class="step-list"><li data-bank-step="1">Accounts and ownership</li><li data-bank-step="2">Balances and transfers</li><li data-bank-step="3">Evidence and explanations</li><li data-bank-step="4">Gaps and proposed treatment</li></ol></aside>
+        <section class="builder-card interview-card"><form id="bankForm">
+          <div class="bank-step" data-bank-step="1"><p class="step-label">Financial module — Step 1</p><h2>Which accounts and savings are relevant?</h2><p class="context-note">Include joint and sole accounts, savings, ISAs, investments and any account through which disputed money moved.</p><div class="form-grid two-col">
+            <label>Joint accounts<textarea name="joint_accounts" rows="4" placeholder="Bank, account type, last four digits, who used it"></textarea></label>
+            <label>Your sole accounts<textarea name="user_accounts" rows="4"></textarea></label>
+            <label>Other party's sole accounts<textarea name="other_party_accounts" rows="4"></textarea></label>
+            <label>Savings, ISAs or investments<textarea name="savings_investments" rows="4"></textarea></label>
+          </div></div>
+          <div class="bank-step hidden" data-bank-step="2"><p class="step-label">Financial module — Step 2</p><h2>Balances, significant transactions and transferred funds</h2><div class="form-grid">
+            <label>Known or estimated balances<textarea name="account_balances" rows="4" placeholder="State the date and source for each balance where possible"></textarea></label>
+            <label>Significant transfers or withdrawals<textarea name="significant_transfers" rows="5" placeholder="Date, amount, originating account, receiving account and who controlled it"></textarea></label>
+            <label>Money received from relatives, third parties or abroad<textarea name="third_party_funds" rows="4"></textarea></label>
+            <label>Interest, income or gains generated by those funds<textarea name="interest_income" rows="3"></textarea></label>
+          </div></div>
+          <div class="bank-step hidden" data-bank-step="3"><p class="step-label">Financial module — Step 3</p><h2>Evidence and competing explanations</h2><div class="form-grid">
+            <label>Available statements and transaction evidence<textarea name="bank_evidence" rows="5" placeholder="Statement dates, account identifiers, transfer confirmations, messages or admissions"></textarea></label>
+            <label>Explanation given for any disputed transfer<textarea name="transfer_explanation" rows="4"></textarea></label>
+            <label>Was the explanation recorded at the time?<select name="contemporaneous_explanation"><option value="">Select</option><option>Yes</option><option>No</option><option>Partly</option><option>Not sure</option></select></label>
+            <label>Inconsistencies or disputed points<textarea name="bank_disputes" rows="4"></textarea></label>
+          </div></div>
+          <div class="bank-step hidden" data-bank-step="4"><p class="step-label">Financial module — Step 4</p><h2>Missing information and proposed treatment</h2><div class="form-grid">
+            <label>Missing statement periods or documents<textarea name="bank_gaps" rows="4"></textarea></label>
+            <label>What further tracing or explanation is required?<textarea name="tracing_required" rows="4"></textarea></label>
+            <label>How should these funds be treated in the case?<textarea name="funds_outcome" rows="4" placeholder="Included in the asset schedule, credited, shared, traced, excluded, or reserved pending disclosure"></textarea></label>
+            <label>Why is that treatment fair and evidence-based?<textarea name="funds_rationale" rows="4"></textarea></label>
+          </div></div>
+          <div class="form-actions"><button id="bankPrevious" class="button secondary" type="button">Previous</button><button id="bankNext" class="button primary" type="button">Next</button><button id="bankSave" class="button primary hidden" type="submit">Save Bank Accounts and Funds</button><button id="bankSaveProgress" class="text-button" type="button">Save progress</button></div><p id="bankSaveMessage" class="form-message" aria-live="polite"></p>
+        </form></section>
+      </div>
+    </section>
+
+    <section id="investigationPanel" class="hidden">
+      <div class="active-case-strip"><div><p class="step-label">Current case</p><strong id="investigationCaseName"></strong><p id="investigationCaseMeta"></p></div><div class="button-row no-margin"><button id="investigationBackDashboard" class="button secondary compact" type="button">Case dashboard</button><a id="investigationWorkspaceLink" class="button secondary compact" href="https://mckenziecms.co.uk/">Open full workspace</a></div></div>
+      <section class="investigation-v3-intro">
+        <div><p class="step-label">CourtReady Investigation Workspace — Version 4.0</p><h2>Tell me your story.</h2><p>Type, paste or dictate what happened in ordinary language. CourtReady will separate the account into working facts, possible evidence, missing information, disputed points and dated events, then ask the next useful question.</p><div class="investigation-principles"><span>One point at a time</span><span>Evidence-led</span><span>Nothing published without approval</span></div></div>
+        <div class="engine-stats v4"><div><strong id="engineFactCount">0</strong><span>Facts</span></div><div><strong id="engineEvidenceCount">0</strong><span>Evidence</span></div><div><strong id="engineGapCount">0</strong><span>Gaps</span></div><div><strong id="engineIssueCount">0</strong><span>Issues</span></div><div><strong id="engineChronologyCount">0</strong><span>Timeline</span></div></div>
+      </section>
+      <div class="investigation-workspace">
+        <section class="conversation-panel" aria-labelledby="conversationHeading">
+          <div class="conversation-heading"><div><p class="step-label">Investigation conversation</p><h3 id="conversationHeading">What happened?</h3></div><button id="newInvestigationThread" class="text-button" type="button">Investigate another point</button></div>
+          <div id="conversationLog" class="conversation-log" aria-live="polite"></div>
+          <form id="conversationForm" class="conversation-composer">
+            <label class="sr-only" for="conversationInput">Your answer</label>
+            <textarea id="conversationInput" rows="5" placeholder="Start anywhere. Describe an event, payment, property, document, allegation, missing disclosure or concern."></textarea><div class="prompt-starters" aria-label="Prompt starters"><button type="button" data-investigation-prompt="A payment or transfer concerns me because…">Money or transfer</button><button type="button" data-investigation-prompt="A property may be relevant because…">Property</button><button type="button" data-investigation-prompt="The other party says something different about…">Conflicting account</button><button type="button" data-investigation-prompt="I believe this document or information is missing…">Missing disclosure</button></div>
+            <div class="composer-actions"><span id="conversationHint">Use facts, dates, amounts and document names where known.</span><button class="button primary" type="submit">Analyse and continue</button></div>
+          </form>
+        </section>
+        <aside class="live-findings-panel" aria-labelledby="liveFindingsHeading">
+          <div class="live-findings-heading"><p class="step-label">Live investigation board</p><h3 id="liveFindingsHeading">What the account is revealing</h3><p>These are working propositions, not judicial findings. Check the wording and evidence before publication.</p><div id="nextQuestionCard" class="next-question-card"><span>Current line of enquiry</span><strong id="nextQuestionText">Tell CourtReady one material event or concern.</strong></div></div>
+          <div class="finding-tabs" role="tablist" aria-label="Working findings">
+            <button class="finding-tab active" type="button" data-proposal-filter="all">All</button><button class="finding-tab" type="button" data-proposal-filter="Fact">Facts</button><button class="finding-tab" type="button" data-proposal-filter="Evidence">Evidence</button><button class="finding-tab" type="button" data-proposal-filter="Gap">Gaps</button><button class="finding-tab" type="button" data-proposal-filter="Issue">Issues</button><button class="finding-tab" type="button" data-proposal-filter="Chronology">Timeline</button>
+          </div>
+          <div id="proposalList" class="proposal-list v3"></div>
+          <div class="publish-bar v3"><div><strong id="publishSelectionCount">0 selected</strong><p id="reviewSummary">No working proposals yet.</p></div><button id="publishProposals" class="button primary" type="button">Publish approved records to McKenzieCMS</button></div>
+          <div class="button-row"><button id="selectAllProposals" class="button secondary compact" type="button">Select all</button><button id="clearProposalSelection" class="button secondary compact" type="button">Clear selection</button></div>
+          <p id="investigationMessage" class="form-message" aria-live="polite"></p>
+        </aside>
+      </div>
+      <section class="published-intelligence builder-card" aria-labelledby="publishedIntelligenceHeading">
+        <div class="review-toolbar"><div><p class="step-label">Published case intelligence</p><h3 id="publishedIntelligenceHeading">Already held in McKenzieCMS</h3><p id="publishedIntelligenceSummary">No Investigation Engine records have been published yet.</p></div><button id="refreshPublishedIntelligence" class="button secondary compact" type="button">Refresh</button></div>
+        <div class="intelligence-tabs" role="tablist" aria-label="Published case intelligence"><button class="intelligence-tab active" type="button" data-intelligence-filter="all">All</button><button class="intelligence-tab" type="button" data-intelligence-filter="fact">Facts</button><button class="intelligence-tab" type="button" data-intelligence-filter="evidence">Evidence</button><button class="intelligence-tab" type="button" data-intelligence-filter="gap">Gaps</button><button class="intelligence-tab" type="button" data-intelligence-filter="issue">Issues</button><button class="intelligence-tab" type="button" data-intelligence-filter="chronology">Chronology</button></div>
+        <div id="publishedIntelligenceList" class="published-intelligence-list"></div>
+      </section>
+    </section>
+
+    <section id="successPanel" class="builder-card success-panel hidden"><p class="success-icon">✓</p><p class="step-label">Case updated</p><h2 id="successTitle">Your case-builder information has been saved.</h2><p id="successSummary"></p><div class="button-row centred"><button id="returnCases" class="button primary" type="button">Return to My Cases</button><a id="successWorkspaceLink" class="button secondary" href="https://mckenziecms.co.uk/">Open Full Case Workspace</a></div></section>
+  </section>
+</main>
+<footer class="site-footer"><div class="container"><p>© CourtReadySupport.co.uk — practical court preparation support, not legal advice.</p></div></footer>
+<script src="casebuilder.js"></script>
+</body></html>

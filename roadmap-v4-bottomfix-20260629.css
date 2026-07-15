@@ -1,0 +1,147 @@
+
+/* CourtReady Roadmap Version 4 bottom-layout repair — 2026-06-29
+   Purpose: keep the roadmap inside the site-width column and make the lower
+   workspace read as centred, consistent cards instead of scattered panels. */
+
+.crs-v4-main {
+  background: #f6f8f5;
+}
+
+.crs-v4-hero,
+.crs-v4-shell,
+.roadmap-support-cta {
+  width: calc(100% - 28px) !important;
+  max-width: 760px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+}
+
+.crs-v4-shell {
+  overflow: visible !important;
+}
+
+.crs-v4-layout {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 30px !important;
+  padding: 26px !important;
+}
+
+.crs-v4-sidebar,
+.crs-v4-workspace,
+.crs-v4-right {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  position: static !important;
+  top: auto !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 22px !important;
+  box-sizing: border-box !important;
+}
+
+.crs-v4-right {
+  padding-top: 8px !important;
+  border-top: 1px solid rgba(30,65,45,.12) !important;
+}
+
+.crs-v4-section-heading {
+  padding: 4px 2px 0 !important;
+  display: grid !important;
+  gap: 6px !important;
+}
+
+.crs-v4-section-heading h3 {
+  margin: 0 !important;
+  color: #183324 !important;
+}
+
+.crs-v4-card,
+.crs-v4-card.compact {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  padding: 26px !important;
+  border-radius: 22px !important;
+  box-sizing: border-box !important;
+}
+
+.crs-v4-card + .crs-v4-card {
+  margin-top: 0 !important;
+}
+
+.crs-v4-card-head {
+  align-items: start !important;
+}
+
+.crs-v4-actions {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  align-items: stretch !important;
+}
+
+.crs-v4-actions .button,
+.crs-v4-coach-box .button {
+  width: 100% !important;
+  justify-content: center !important;
+}
+
+.crs-v4-output,
+.crs-v4-coach-answer,
+#notes-v4,
+#coach-input {
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+}
+
+.crs-v4-scorebox.small {
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 12px 0 18px !important;
+}
+
+.roadmap-support-cta {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 20px !important;
+  padding: 0 0 56px !important;
+}
+
+.roadmap-support-cta .limits-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 16px !important;
+  width: 100% !important;
+}
+
+.roadmap-support-cta .limits-grid article {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.site-footer {
+  margin-top: 0 !important;
+}
+
+@media (max-width: 560px) {
+  .crs-v4-hero,
+  .crs-v4-shell,
+  .roadmap-support-cta {
+    width: calc(100% - 24px) !important;
+  }
+
+  .crs-v4-layout,
+  .crs-v4-topbar,
+  .crs-v4-card,
+  .crs-v4-card.compact {
+    padding: 18px !important;
+  }
+
+  .crs-v4-actions {
+    grid-template-columns: 1fr !important;
+  }
+}

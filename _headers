@@ -1,0 +1,25 @@
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; connect-src 'self' https://oivlsulzybgxdzhidnbc.supabase.co wss://oivlsulzybgxdzhidnbc.supabase.co; base-uri 'self'; form-action 'self' mailto:
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.css
+  Cache-Control: public, max-age=86400
+
+/*.js
+  Cache-Control: public, max-age=86400
+
+/roadmap.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/roadmap-v4-noai-20260629.js
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/roadmap-v4-bottomfix-20260629.css
+  Cache-Control: no-cache, no-store, must-revalidate
+
