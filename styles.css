@@ -2441,6 +2441,203 @@ details p {
   }
 }
 
+/* Sprint 5.0.3 — landing page feature showcase */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #f2a66f;
+  outline-offset: 3px;
+}
+
+.feature-banner {
+  justify-self: start;
+  padding: 7px 11px;
+  border: 1px solid rgba(47, 138, 134, 0.35);
+  border-radius: 999px;
+  background: var(--mist);
+  color: var(--aqua-dark);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.feature-showcase,
+.before-after,
+.connected-platform,
+.intelligence-preview {
+  border-bottom: 1px solid var(--line);
+}
+
+.capability-grid,
+.comparison-grid,
+.preview-category-grid {
+  display: grid;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.capability-card,
+.comparison-card,
+.platform-flow article,
+.intelligence-preview-panel {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--white);
+  box-shadow: 0 10px 26px rgba(18, 43, 61, 0.07);
+}
+
+.capability-card {
+  padding: 22px;
+}
+
+.capability-card > span,
+.platform-flow article > span,
+.preview-label,
+.comparison-label {
+  color: var(--aqua-dark);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.capability-card h3,
+.platform-flow h3 {
+  margin: 10px 0 8px;
+}
+
+.comparison-card {
+  padding: 24px;
+}
+
+.comparison-card.before {
+  border-top: 5px solid var(--clay);
+}
+
+.comparison-card.after {
+  border-top: 5px solid var(--aqua);
+}
+
+.comparison-card ul {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding-left: 20px;
+}
+
+.platform-flow {
+  display: grid;
+  gap: 12px;
+  align-items: stretch;
+  margin-top: 28px;
+}
+
+.platform-flow article {
+  padding: 24px;
+}
+
+.platform-connector {
+  align-self: center;
+  color: var(--aqua-dark);
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-align: center;
+  transform: rotate(90deg);
+}
+
+.intelligence-preview {
+  display: grid;
+  gap: 26px;
+  align-items: center;
+}
+
+.intelligence-preview-copy {
+  display: grid;
+  gap: 14px;
+}
+
+.intelligence-preview-panel {
+  padding: 20px;
+}
+
+.preview-category-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 16px;
+}
+
+.preview-category-grid span {
+  display: flex;
+  min-height: 70px;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid #cfdedc;
+  border-left: 4px solid var(--aqua);
+  border-radius: 10px;
+  background: #f7fbfa;
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.final-case-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  padding: 34px 24px;
+  border: 1px solid #b9d6d3;
+  border-radius: 18px;
+  background: var(--mist);
+}
+
+.final-case-cta h2 {
+  margin: 8px 0 10px;
+}
+
+@media (min-width: 620px) {
+  .capability-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .comparison-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .final-case-cta {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .final-case-cta .button {
+    flex: 0 0 auto;
+  }
+}
+
+@media (min-width: 820px) {
+  .capability-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .platform-flow {
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+  }
+
+  .platform-connector {
+    transform: none;
+  }
+
+  .intelligence-preview {
+    grid-template-columns: minmax(0, 0.75fr) minmax(420px, 1.25fr);
+  }
+}
+
+@media (max-width: 460px) {
+  .preview-category-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* CourtReady AI Coach response feedback */
 .crs-v4-coach-answer.crs-v4-coach-updated {
   outline: 3px solid rgba(99,132,117,.35);

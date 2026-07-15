@@ -1,3 +1,19 @@
+CourtReady Sprint 5.0.3 — Landing Page Feature Showcase
+
+Redesigns the public landing page around CourtReady’s current guided case-building, investigation, evidence-organisation and Case Intelligence capabilities.
+
+## Sprint 5.0.3 — Landing Page Feature Showcase
+
+- Refocuses the hero on turning scattered information into an evidence-led case, with direct Case Builder and workflow actions.
+- Adds a restrained Case Intelligence and Guided Investigation release banner.
+- Adds six plain-language capability cards covering guided case building, Investigation, Case Intelligence, evidence-led preparation, McKenzieCMS and TrustLocker.
+- Adds a five-step review-before-publication workflow, before-and-after comparison and connected-platform explanation.
+- Adds a clearly labelled, non-interactive Case Intelligence illustration without fabricated scores or customer data.
+- Strengthens service-boundary wording and adds a final Case Builder call to action.
+- Updates landing-page SEO metadata for guided case preparation, evidence organisation, case intelligence and litigants in person in England and Wales.
+- Preserves the existing header, footer, support, roadmap, legal hub, enquiry form and responsive navigation.
+- Makes no changes to authentication, Case Builder logic, McKenzieCMS mappings, TrustLocker integration, database configuration or SQL.
+
 CourtReady Sprint 5.0.2 — Case Health Intelligence
 
 Turns the existing Case Intelligence summary into an accessible, evidence-led preparation report without changing McKenzieCMS authentication, field mappings or database structure.
