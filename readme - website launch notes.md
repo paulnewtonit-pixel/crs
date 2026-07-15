@@ -1,6 +1,17 @@
-CourtReady Support Case Builder Foundation 1.6
+CourtReady Version 5.0.1 — Case Intelligence Foundation
 
-Adds the Bank Accounts, Savings and Transferred Funds evidence-led module, persistent progress, dashboard progression, and McKenzieCMS derived records for financial assets, issues, evidence gaps, chronology and tracing tasks.
+Adds a case-specific intelligence overview while preserving the existing Case Builder, Property, Finance, Investigation and McKenzieCMS workflows.
+
+## CourtReady 5.0.1 — Case Intelligence Foundation
+
+- Adds Case Intelligence immediately after an existing case is selected.
+- Summarises facts, supporting evidence, matters to resolve, information still needed, timeline events and the publication queue.
+- Adds evidence coverage, timeline coverage, outstanding-issue, missing-information and overall-readiness indicators.
+- Shows structured fact cards with statement, category, source, evidence status, confidence and publication status.
+- Adds a reviewable publication queue linked to the existing Investigation workspace.
+- Keeps all newly identified intelligence in a working queue until the user explicitly selects and publishes approved records.
+- Continues to use the existing McKenzieCMS `clients` and `case_items` records; no database tables or SQL changes are required.
+- Preserves existing authentication, case loading and creation, saved progress, Property and Housing, Bank Accounts and Funds, and Investigation workflows.
 
 # CourtReadySupport.co.uk Website Launch Notes
 

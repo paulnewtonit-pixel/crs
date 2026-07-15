@@ -37,8 +37,8 @@
 </header>
 <main id="main" class="builder-shell">
   <section class="builder-hero"><div class="container builder-hero-grid">
-    <div><p class="kicker">CourtReady Investigation Platform — Version 4.0</p><h1>Tell us the story. We will help structure the case.</h1><p class="builder-lead">Start with what happened in your own words. CourtReady will organise the material into reviewable facts, evidence, gaps, issues and chronology.</p></div>
-    <div class="privacy-panel"><strong>Development release</strong><p>Version 4.0 makes Investigation the primary experience while preserving review-before-publish control and McKenzieCMS integration.</p></div>
+    <div><p class="kicker">CourtReady — Version 5.0.1</p><h1>Tell us the story. We will help structure the case.</h1><p class="builder-lead">Start with what happened in your own words. CourtReady will organise the material into reviewable facts, evidence, gaps, issues and chronology.</p></div>
+    <div class="privacy-panel"><strong>Case Intelligence Foundation</strong><p>Version 5.0.1 brings evidence coverage, unresolved matters, missing information, timeline coverage and publication review into one case-specific view.</p></div>
   </div></section>
 
   <section class="container builder-main">
@@ -81,6 +81,30 @@
         <article class="dashboard-card"><p class="step-label">Available material</p><strong id="dashboardEvidenceCount">0 categories recorded</strong><p>Evidence can be reviewed and linked in later modules.</p></article>
         <article class="dashboard-card"><p class="step-label">Immediate focus</p><strong id="dashboardFocus">Confirm the introductory information</strong><p id="dashboardFocusDetail">Complete missing sections before moving into evidence-led modules.</p></article>
       </div>
+      <section class="case-intelligence" aria-labelledby="caseIntelligenceHeading">
+        <div class="section-heading intelligence-heading"><div><p class="step-label">Case Intelligence</p><h2 id="caseIntelligenceHeading">Evidence-led case overview</h2><p>Working intelligence is kept separate from McKenzieCMS until you review and expressly approve publication.</p></div><button id="reviewPublicationQueue" class="button secondary compact" type="button">Review publication queue</button></div>
+        <div class="intelligence-category-grid" aria-label="Case intelligence totals">
+          <article class="intelligence-category-card"><span class="intelligence-icon" aria-hidden="true">F</span><div><strong id="ciFactsCount">0</strong><span>Facts</span></div></article>
+          <article class="intelligence-category-card"><span class="intelligence-icon" aria-hidden="true">E</span><div><strong id="ciEvidenceCount">0</strong><span>Supporting Evidence</span></div></article>
+          <article class="intelligence-category-card"><span class="intelligence-icon" aria-hidden="true">R</span><div><strong id="ciIssuesCount">0</strong><span>Matters to Resolve</span></div></article>
+          <article class="intelligence-category-card"><span class="intelligence-icon" aria-hidden="true">?</span><div><strong id="ciGapsCount">0</strong><span>Information Still Needed</span></div></article>
+          <article class="intelligence-category-card"><span class="intelligence-icon" aria-hidden="true">T</span><div><strong id="ciTimelineCount">0</strong><span>Timeline Events</span></div></article>
+          <article class="intelligence-category-card queue"><span class="intelligence-icon" aria-hidden="true">Q</span><div><strong id="ciQueueCount">0</strong><span>Publication Queue</span></div></article>
+        </div>
+        <div class="case-health-panel">
+          <div class="case-health-heading"><div><h3>Case health</h3><p>Indicators reflect the intelligence currently recorded; they are preparation aids, not legal conclusions.</p></div><strong id="ciOverallReadiness" class="readiness-badge">0% overall readiness</strong></div>
+          <div class="health-grid">
+            <article class="health-indicator"><div><span>Evidence coverage</span><strong id="ciEvidenceCoverage">0%</strong></div><div class="health-track"><span id="ciEvidenceCoverageBar"></span></div><small id="ciEvidenceCoverageNote">No facts recorded</small></article>
+            <article class="health-indicator"><div><span>Timeline coverage</span><strong id="ciTimelineCoverage">0%</strong></div><div class="health-track"><span id="ciTimelineCoverageBar"></span></div><small id="ciTimelineCoverageNote">No facts recorded</small></article>
+            <article class="health-indicator"><div><span>Outstanding issues</span><strong id="ciOutstandingIssues">0</strong></div><div class="health-track reverse"><span id="ciOutstandingIssuesBar"></span></div><small id="ciOutstandingIssuesNote">No unresolved matters recorded</small></article>
+            <article class="health-indicator"><div><span>Missing information</span><strong id="ciMissingInformation">0</strong></div><div class="health-track reverse"><span id="ciMissingInformationBar"></span></div><small id="ciMissingInformationNote">No information gaps recorded</small></article>
+          </div>
+        </div>
+        <div class="intelligence-detail-grid">
+          <section class="intelligence-detail-panel" aria-labelledby="factCardsHeading"><div class="detail-panel-heading"><div><h3 id="factCardsHeading">Structured facts</h3><p>Statements remain provisional until supported and reviewed.</p></div><span id="ciFactSummary" class="count-chip">0 facts</span></div><div id="ciFactCards" class="fact-card-list"></div></section>
+          <section class="intelligence-detail-panel" aria-labelledby="publicationQueueHeading"><div class="detail-panel-heading"><div><h3 id="publicationQueueHeading">Publication queue</h3><p>Nothing in this queue is published automatically.</p></div><span id="ciQueueSummary" class="count-chip">0 queued</span></div><div id="ciPublicationQueue" class="publication-queue-list"></div><button id="reviewPublicationQueueBottom" class="button secondary queue-review-button" type="button">Open review workspace</button></section>
+        </div>
+      </section>
       <section class="builder-card dashboard-sections-card">
         <div class="section-heading"><div><h2>Case-building sections</h2><p>Review a completed section or continue from the next incomplete one.</p></div></div>
         <div id="dashboardSections" class="dashboard-sections"></div>
@@ -181,7 +205,7 @@
     <section id="investigationPanel" class="hidden">
       <div class="active-case-strip"><div><p class="step-label">Current case</p><strong id="investigationCaseName"></strong><p id="investigationCaseMeta"></p></div><div class="button-row no-margin"><button id="investigationBackDashboard" class="button secondary compact" type="button">Case dashboard</button><a id="investigationWorkspaceLink" class="button secondary compact" href="https://mckenziecms.co.uk/">Open full workspace</a></div></div>
       <section class="investigation-v3-intro">
-        <div><p class="step-label">CourtReady Investigation Workspace — Version 4.0</p><h2>Tell me your story.</h2><p>Type, paste or dictate what happened in ordinary language. CourtReady will separate the account into working facts, possible evidence, missing information, disputed points and dated events, then ask the next useful question.</p><div class="investigation-principles"><span>One point at a time</span><span>Evidence-led</span><span>Nothing published without approval</span></div></div>
+        <div><p class="step-label">CourtReady Investigation Workspace — Version 5.0.1</p><h2>Tell me your story.</h2><p>Type, paste or dictate what happened in ordinary language. CourtReady will separate the account into working facts, possible evidence, missing information, disputed points and dated events, then ask the next useful question.</p><div class="investigation-principles"><span>One point at a time</span><span>Evidence-led</span><span>Nothing published without approval</span></div></div>
         <div class="engine-stats v4"><div><strong id="engineFactCount">0</strong><span>Facts</span></div><div><strong id="engineEvidenceCount">0</strong><span>Evidence</span></div><div><strong id="engineGapCount">0</strong><span>Gaps</span></div><div><strong id="engineIssueCount">0</strong><span>Issues</span></div><div><strong id="engineChronologyCount">0</strong><span>Timeline</span></div></div>
       </section>
       <div class="investigation-workspace">
