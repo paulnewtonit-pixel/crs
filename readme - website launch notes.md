@@ -1,3 +1,19 @@
+CourtReady Sprint 5.0.2 — Case Health Intelligence
+
+Turns the existing Case Intelligence summary into an accessible, evidence-led preparation report without changing McKenzieCMS authentication, field mappings or database structure.
+
+## CourtReady 5.0.2 — Case Health Intelligence
+
+- Calculates Overall Case Readiness, Evidence Coverage, Timeline Coverage, Outstanding Issues and Information Still Needed from the selected case and its existing persisted `case_items`.
+- Measures completeness, organisation and evidential support only; it does not assess legal merits, prospects of success or likelihood of winning.
+- Adds an accessible Case Health Report with Completed, Needs Attention and Information Still Needed sections.
+- Identifies supported and unsupported facts, available evidence, established and incomplete chronology, disputed matters, missing valuations, missing statements, missing dates and unanswered intake sections.
+- Derives a recommended next action from the highest-priority unresolved preparation item.
+- Links report items back to the relevant Case Intelligence category where practical.
+- Supports a visible Close action, Escape-key closure, keyboard focus containment and responsive mobile presentation.
+- Uses the existing `clients` and `case_items` data only for health scores; local publication-queue records are listed for review but do not improve readiness.
+- Requires no new tables, SQL changes or McKenzieCMS field-mapping changes.
+
 CourtReady Version 5.0.1 — Case Intelligence Foundation
 
 Adds a case-specific intelligence overview while preserving the existing Case Builder, Property, Finance, Investigation and McKenzieCMS workflows.

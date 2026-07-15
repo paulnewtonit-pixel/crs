@@ -37,8 +37,8 @@
 </header>
 <main id="main" class="builder-shell">
   <section class="builder-hero"><div class="container builder-hero-grid">
-    <div><p class="kicker">CourtReady — Version 5.0.1</p><h1>Tell us the story. We will help structure the case.</h1><p class="builder-lead">Start with what happened in your own words. CourtReady will organise the material into reviewable facts, evidence, gaps, issues and chronology.</p></div>
-    <div class="privacy-panel"><strong>Case Intelligence Foundation</strong><p>Version 5.0.1 brings evidence coverage, unresolved matters, missing information, timeline coverage and publication review into one case-specific view.</p></div>
+    <div><p class="kicker">CourtReady — Version 5.0.2</p><h1>Tell us the story. We will help structure the case.</h1><p class="builder-lead">Start with what happened in your own words. CourtReady will organise the material into reviewable facts, evidence, gaps, issues and chronology.</p></div>
+    <div class="privacy-panel"><strong>Case Health Intelligence</strong><p>Version 5.0.2 turns recorded case information into a reviewable report about completeness, organisation and evidential support.</p></div>
   </div></section>
 
   <section class="container builder-main">
@@ -84,15 +84,15 @@
       <section class="case-intelligence" aria-labelledby="caseIntelligenceHeading">
         <div class="section-heading intelligence-heading"><div><p class="step-label">Case Intelligence</p><h2 id="caseIntelligenceHeading">Evidence-led case overview</h2><p>Working intelligence is kept separate from McKenzieCMS until you review and expressly approve publication.</p></div><button id="reviewPublicationQueue" class="button secondary compact" type="button">Review publication queue</button></div>
         <div class="intelligence-category-grid" aria-label="Case intelligence totals">
-          <article class="intelligence-category-card"><span class="intelligence-icon" aria-hidden="true">F</span><div><strong id="ciFactsCount">0</strong><span>Facts</span></div></article>
-          <article class="intelligence-category-card"><span class="intelligence-icon" aria-hidden="true">E</span><div><strong id="ciEvidenceCount">0</strong><span>Supporting Evidence</span></div></article>
-          <article class="intelligence-category-card"><span class="intelligence-icon" aria-hidden="true">R</span><div><strong id="ciIssuesCount">0</strong><span>Matters to Resolve</span></div></article>
-          <article class="intelligence-category-card"><span class="intelligence-icon" aria-hidden="true">?</span><div><strong id="ciGapsCount">0</strong><span>Information Still Needed</span></div></article>
-          <article class="intelligence-category-card"><span class="intelligence-icon" aria-hidden="true">T</span><div><strong id="ciTimelineCount">0</strong><span>Timeline Events</span></div></article>
-          <article class="intelligence-category-card queue"><span class="intelligence-icon" aria-hidden="true">Q</span><div><strong id="ciQueueCount">0</strong><span>Publication Queue</span></div></article>
+          <article id="ciCategoryFacts" class="intelligence-category-card" tabindex="-1"><span class="intelligence-icon" aria-hidden="true">F</span><div><strong id="ciFactsCount">0</strong><span>Facts</span></div></article>
+          <article id="ciCategoryEvidence" class="intelligence-category-card" tabindex="-1"><span class="intelligence-icon" aria-hidden="true">E</span><div><strong id="ciEvidenceCount">0</strong><span>Supporting Evidence</span></div></article>
+          <article id="ciCategoryIssues" class="intelligence-category-card" tabindex="-1"><span class="intelligence-icon" aria-hidden="true">R</span><div><strong id="ciIssuesCount">0</strong><span>Matters to Resolve</span></div></article>
+          <article id="ciCategoryGaps" class="intelligence-category-card" tabindex="-1"><span class="intelligence-icon" aria-hidden="true">?</span><div><strong id="ciGapsCount">0</strong><span>Information Still Needed</span></div></article>
+          <article id="ciCategoryTimeline" class="intelligence-category-card" tabindex="-1"><span class="intelligence-icon" aria-hidden="true">T</span><div><strong id="ciTimelineCount">0</strong><span>Timeline Events</span></div></article>
+          <article id="ciCategoryQueue" class="intelligence-category-card queue" tabindex="-1"><span class="intelligence-icon" aria-hidden="true">Q</span><div><strong id="ciQueueCount">0</strong><span>Publication Queue</span></div></article>
         </div>
         <div class="case-health-panel">
-          <div class="case-health-heading"><div><h3>Case health</h3><p>Indicators reflect the intelligence currently recorded; they are preparation aids, not legal conclusions.</p></div><strong id="ciOverallReadiness" class="readiness-badge">0% overall readiness</strong></div>
+          <div class="case-health-heading"><div><h3>Case health</h3><p>Indicators measure completeness, organisation and evidential support only. They do not assess legal merits or prospects.</p></div><div class="case-health-actions"><strong id="ciOverallReadiness" class="readiness-badge">0% Overall Case Readiness</strong><button id="viewCaseHealthReport" class="button primary compact" type="button" aria-haspopup="dialog">View Case Health Report</button></div></div>
           <div class="health-grid">
             <article class="health-indicator"><div><span>Evidence coverage</span><strong id="ciEvidenceCoverage">0%</strong></div><div class="health-track"><span id="ciEvidenceCoverageBar"></span></div><small id="ciEvidenceCoverageNote">No facts recorded</small></article>
             <article class="health-indicator"><div><span>Timeline coverage</span><strong id="ciTimelineCoverage">0%</strong></div><div class="health-track"><span id="ciTimelineCoverageBar"></span></div><small id="ciTimelineCoverageNote">No facts recorded</small></article>
@@ -110,6 +110,20 @@
         <div id="dashboardSections" class="dashboard-sections"></div>
       </section>
     </section>
+
+    <div id="caseHealthReportModal" class="case-health-modal hidden" role="dialog" aria-modal="true" aria-labelledby="caseHealthReportTitle" aria-describedby="caseHealthReportDescription">
+      <div class="case-health-report" tabindex="-1">
+        <header class="case-health-report-header"><div><p class="step-label">CourtReady Case Intelligence</p><h2 id="caseHealthReportTitle">Case Health Report</h2><p id="caseHealthReportDescription">A preparation report based on information currently recorded for this case.</p></div><button id="closeCaseHealthReport" class="button secondary compact" type="button">Close</button></header>
+        <div class="report-readiness"><strong id="reportOverallReadiness">0% Overall Case Readiness</strong><p id="reportCalculationNote">Calculated from recorded facts, supporting evidence, timeline information and unresolved preparation work.</p></div>
+        <section class="report-next-action" aria-labelledby="reportNextActionHeading"><p class="step-label">Recommended next action</p><h3 id="reportNextActionHeading">Review the case information</h3><p id="reportNextActionText"></p><button id="reportNextActionLink" class="text-button" type="button" data-health-target="ciCategoryGaps">Go to relevant Case Intelligence category</button></section>
+        <div class="health-report-sections">
+          <section class="health-report-section completed" aria-labelledby="healthCompletedHeading"><h3 id="healthCompletedHeading">Completed</h3><p>Information already recorded and organised.</p><ul id="healthCompletedList" class="health-report-list"></ul></section>
+          <section class="health-report-section attention" aria-labelledby="healthAttentionHeading"><h3 id="healthAttentionHeading">Needs Attention</h3><p>Recorded material requiring support, completion or review.</p><ul id="healthAttentionList" class="health-report-list"></ul></section>
+          <section class="health-report-section needed" aria-labelledby="healthNeededHeading"><h3 id="healthNeededHeading">Information Still Needed</h3><p>Specific information or documents not yet recorded.</p><ul id="healthNeededList" class="health-report-list"></ul></section>
+        </div>
+        <footer class="case-health-report-footer"><button id="closeCaseHealthReportBottom" class="button primary" type="button">Close Case Health Report</button></footer>
+      </div>
+    </div>
 
     <section id="builderPanel" class="hidden">
       <div class="active-case-strip"><div><p class="step-label">Current case</p><strong id="activeCaseName"></strong><p id="activeCaseMeta"></p></div><div class="button-row no-margin"><button id="changeCase" class="button secondary compact" type="button">Change case</button><a id="builderWorkspaceLink" class="button secondary compact" href="https://mckenziecms.co.uk/">Open full workspace</a></div></div>
