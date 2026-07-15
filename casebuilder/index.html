@@ -37,8 +37,8 @@
 </header>
 <main id="main" class="builder-shell">
   <section class="builder-hero"><div class="container builder-hero-grid">
-    <div><p class="kicker">CourtReady — Version 5.0.2</p><h1>Tell us the story. We will help structure the case.</h1><p class="builder-lead">Start with what happened in your own words. CourtReady will organise the material into reviewable facts, evidence, gaps, issues and chronology.</p></div>
-    <div class="privacy-panel"><strong>Case Health Intelligence</strong><p>Version 5.0.2 turns recorded case information into a reviewable report about completeness, organisation and evidential support.</p></div>
+    <div><p class="kicker">CourtReady — Version 5.0.4</p><h1>Build your case step by step.</h1><p class="builder-lead">CourtReady helps you understand what is recorded, what remains in draft, what needs review and what has been published to your case.</p></div>
+    <div class="privacy-panel"><strong>Guided first-use experience</strong><p>Draft, proposed, reviewed and published information remain clearly separated throughout the workflow.</p></div>
   </div></section>
 
   <section class="container builder-main">
@@ -53,6 +53,8 @@
 
     <section id="caseSelectionPanel" class="hidden">
       <div class="signed-in-strip"><div><p class="step-label">My Cases</p><strong id="signedInIdentity">Your CRS account is connected.</strong><p>Select a case to continue building it here.</p></div><button id="signOut" class="button secondary compact" type="button">Sign out</button></div>
+      <section class="first-use-welcome" aria-labelledby="firstUseHeading"><div><p class="step-label">Welcome to CourtReady</p><h2 id="firstUseHeading">Build your case step by step</h2><p>CourtReady helps you organise what happened, identify supporting evidence, highlight missing information and review what should enter your permanent case record.</p></div><div class="first-use-routes"><button id="continueExistingCases" class="button primary" type="button">Continue an Existing Case</button><button id="newCaseWelcome" class="button secondary" type="button">Create a New Case</button></div></section>
+      <section class="onboarding-steps" aria-labelledby="whatHappensNextHeading"><div><p class="step-label">What happens next?</p><h2 id="whatHappensNextHeading">A controlled five-stage process</h2></div><ol><li><span>1</span>Select or create a case</li><li><span>2</span>Complete the case foundation</li><li><span>3</span>Tell CourtReady what happened</li><li><span>4</span>Review identified facts, issues and evidence gaps</li><li><span>5</span>Publish only approved records to McKenzieCMS</li></ol></section>
       <section class="new-case-callout" aria-labelledby="newCaseHeading">
         <div>
           <p class="step-label">New matter</p>
@@ -61,7 +63,7 @@
         </div>
         <button id="newCase" class="button primary" type="button">Create New Case</button>
       </section>
-      <section class="builder-card">
+      <section id="existingCasesSection" class="builder-card" tabindex="-1">
         <div class="section-heading"><div><h2>Your existing cases</h2><p>Select an existing CMS case to continue building it without creating a duplicate.</p></div></div>
         <div id="casesLoading" class="empty-state">Loading your cases…</div>
         <div id="caseList" class="case-list"></div>
@@ -70,19 +72,22 @@
     </section>
 
     <section id="caseDashboardPanel" class="hidden">
-      <div class="active-case-strip"><div><p class="step-label">Current case</p><strong id="dashboardCaseName"></strong><p id="dashboardCaseMeta"></p></div><div class="button-row no-margin"><button id="dashboardChangeCase" class="button secondary compact" type="button">Change case</button><a id="dashboardWorkspaceLink" class="button secondary compact" href="https://mckenziecms.co.uk/">Open full workspace</a></div></div>
+      <div class="active-case-strip persistent-case-context"><div><p class="step-label">Current case</p><strong id="dashboardCaseName" data-case-context-name></strong><p id="dashboardCaseMeta" data-case-context-meta></p><p class="case-context-secondary"><span data-case-context-stage></span><span data-case-context-updated></span></p></div><div class="button-row no-margin"><button id="dashboardChangeCase" class="button secondary compact" type="button">Change Case</button><button class="button secondary compact" type="button" data-my-cases>My Cases</button><a id="dashboardWorkspaceLink" class="button secondary compact" href="https://mckenziecms.co.uk/">Open Full McKenzieCMS Workspace</a></div></div>
       <section class="dashboard-welcome">
         <div><p class="step-label">Case Builder dashboard</p><h2 id="dashboardHeading">Continue building your case</h2><p id="dashboardNextText">We will take you to the next incomplete section.</p></div>
         <button id="continueInterview" class="button primary dashboard-primary" type="button">Continue Building My Case</button>
       </section>
+      <section id="recommendedNextStep" class="recommended-next-step" aria-labelledby="recommendedNextHeading"><div><p class="step-label">Recommended next step</p><h2 id="recommendedNextHeading">Continue the case foundation</h2><p id="recommendedNextText">Record the essential introductory information before moving into investigation.</p></div><button id="recommendedNextAction" class="button primary" type="button">Continue case foundation</button></section>
+      <section class="builder-card first-use-checklist-card" aria-labelledby="caseChecklistHeading"><div class="section-heading"><div><p class="step-label">Case-building checklist</p><h2 id="caseChecklistHeading">Your progress through CourtReady</h2><p>Status describes the information workflow, not whether the case itself is complete.</p></div></div><ol id="caseBuildingChecklist" class="case-building-checklist"></ol></section>
+      <section class="status-legend" aria-labelledby="statusLegendHeading"><div><p class="step-label">Status guide</p><h2 id="statusLegendHeading">What each information status means</h2></div><dl><div><dt>Draft</dt><dd>Information saved in CourtReady but not proposed for publication.</dd></div><div><dt>Proposed</dt><dd>A possible fact, issue, timeline event or evidence gap identified for review.</dd></div><div><dt>Reviewed</dt><dd>Information the user has checked and approved.</dd></div><div><dt>Published</dt><dd>Information written into the selected McKenzieCMS case.</dd></div></dl></section>
       <div class="dashboard-grid">
-        <article class="dashboard-card"><p class="step-label">Overall progress</p><div class="dashboard-progress"><span id="dashboardProgressBar"></span></div><strong id="dashboardProgressText">0% complete</strong><p id="dashboardLastUpdated">Not yet saved</p></article>
+        <article class="dashboard-card"><p class="step-label">Foundation progress</p><div class="dashboard-progress"><span id="dashboardProgressBar"></span></div><strong id="dashboardProgressText">0% foundation completeness</strong><p id="dashboardLastUpdated">Not yet saved</p></article>
         <article class="dashboard-card"><p class="step-label">Next event</p><strong id="dashboardNextEvent">No hearing or deadline recorded</strong><p id="dashboardNextEventDetail">Add the next court date when known.</p></article>
         <article class="dashboard-card"><p class="step-label">Available material</p><strong id="dashboardEvidenceCount">0 categories recorded</strong><p>Evidence can be reviewed and linked in later modules.</p></article>
         <article class="dashboard-card"><p class="step-label">Immediate focus</p><strong id="dashboardFocus">Confirm the introductory information</strong><p id="dashboardFocusDetail">Complete missing sections before moving into evidence-led modules.</p></article>
       </div>
       <section class="case-intelligence" aria-labelledby="caseIntelligenceHeading">
-        <div class="section-heading intelligence-heading"><div><p class="step-label">Case Intelligence</p><h2 id="caseIntelligenceHeading">Evidence-led case overview</h2><p>Working intelligence is kept separate from McKenzieCMS until you review and expressly approve publication.</p></div><button id="reviewPublicationQueue" class="button secondary compact" type="button">Review publication queue</button></div>
+        <div class="section-heading intelligence-heading"><div><p class="step-label">Case Intelligence</p><h2 id="caseIntelligenceHeading" tabindex="-1">Evidence-led case overview</h2><p>Working intelligence is kept separate from McKenzieCMS until you review and expressly approve publication.</p></div><button id="reviewPublicationQueue" class="button secondary compact" type="button">Review publication queue</button></div>
         <div class="intelligence-category-grid" aria-label="Case intelligence totals">
           <article id="ciCategoryFacts" class="intelligence-category-card" tabindex="-1"><span class="intelligence-icon" aria-hidden="true">F</span><div><strong id="ciFactsCount">0</strong><span>Facts</span></div></article>
           <article id="ciCategoryEvidence" class="intelligence-category-card" tabindex="-1"><span class="intelligence-icon" aria-hidden="true">E</span><div><strong id="ciEvidenceCount">0</strong><span>Supporting Evidence</span></div></article>
@@ -104,6 +109,7 @@
           <section class="intelligence-detail-panel" aria-labelledby="factCardsHeading"><div class="detail-panel-heading"><div><h3 id="factCardsHeading">Structured facts</h3><p>Statements remain provisional until supported and reviewed.</p></div><span id="ciFactSummary" class="count-chip">0 facts</span></div><div id="ciFactCards" class="fact-card-list"></div></section>
           <section class="intelligence-detail-panel" aria-labelledby="publicationQueueHeading"><div class="detail-panel-heading"><div><h3 id="publicationQueueHeading">Publication queue</h3><p>Nothing in this queue is published automatically.</p></div><span id="ciQueueSummary" class="count-chip">0 queued</span></div><div id="ciPublicationQueue" class="publication-queue-list"></div><button id="reviewPublicationQueueBottom" class="button secondary queue-review-button" type="button">Open review workspace</button></section>
         </div>
+        <div id="caseIntelligenceEmptyStates" class="intelligence-empty-grid"><div id="ciEvidenceEmpty" class="empty-intelligence hidden"></div><div id="ciTimelineEmpty" class="empty-intelligence hidden"></div></div>
       </section>
       <section class="builder-card dashboard-sections-card">
         <div class="section-heading"><div><h2>Case-building sections</h2><p>Review a completed section or continue from the next incomplete one.</p></div></div>
@@ -126,7 +132,7 @@
     </div>
 
     <section id="builderPanel" class="hidden">
-      <div class="active-case-strip"><div><p class="step-label">Current case</p><strong id="activeCaseName"></strong><p id="activeCaseMeta"></p></div><div class="button-row no-margin"><button id="changeCase" class="button secondary compact" type="button">Change case</button><a id="builderWorkspaceLink" class="button secondary compact" href="https://mckenziecms.co.uk/">Open full workspace</a></div></div>
+      <div class="active-case-strip persistent-case-context"><div><p class="step-label">Current case</p><strong id="activeCaseName" data-case-context-name></strong><p id="activeCaseMeta" data-case-context-meta></p><p class="case-context-secondary"><span data-case-context-stage></span><span data-case-context-updated></span></p></div><div class="button-row no-margin"><button id="changeCase" class="button secondary compact" type="button">Change Case</button><button class="button secondary compact" type="button" data-my-cases>My Cases</button><a id="builderWorkspaceLink" class="button secondary compact" href="https://mckenziecms.co.uk/">Open Full McKenzieCMS Workspace</a></div></div>
       <div class="builder-layout">
         <aside class="progress-card"><p class="step-label">Your progress</p><div class="progress-track"><span id="progressBar"></span></div><p id="progressText">Step 1 of 5</p><ol id="stepList" class="step-list"><li data-step="1">Case identity</li><li data-step="2">People involved</li><li data-step="3">Current position</li><li data-step="4">Court dates</li><li data-step="5">Available material</li></ol></aside>
         <section class="builder-card interview-card"><form id="caseForm">
@@ -148,7 +154,7 @@
 
 
     <section id="propertyPanel" class="hidden">
-      <div class="active-case-strip"><div><p class="step-label">Current case</p><strong id="propertyCaseName"></strong><p id="propertyCaseMeta"></p></div><div class="button-row no-margin"><button id="propertyBackDashboard" class="button secondary compact" type="button">Case dashboard</button><a id="propertyWorkspaceLink" class="button secondary compact" href="https://mckenziecms.co.uk/">Open full workspace</a></div></div>
+      <div class="active-case-strip persistent-case-context"><div><p class="step-label">Current case</p><strong id="propertyCaseName" data-case-context-name></strong><p id="propertyCaseMeta" data-case-context-meta></p><p class="case-context-secondary"><span data-case-context-stage></span><span data-case-context-updated></span></p></div><div class="button-row no-margin"><button id="propertyBackDashboard" class="button secondary compact" type="button">Case dashboard</button><button class="button secondary compact" type="button" data-change-case>Change Case</button><button class="button secondary compact" type="button" data-my-cases>My Cases</button><a id="propertyWorkspaceLink" class="button secondary compact" href="https://mckenziecms.co.uk/">Open Full McKenzieCMS Workspace</a></div></div>
       <div class="builder-layout">
         <aside class="progress-card"><p class="step-label">Property and housing</p><div class="progress-track"><span id="propertyProgressBar"></span></div><p id="propertyProgressText">Step 1 of 4</p><ol id="propertyStepList" class="step-list"><li data-property-step="1">Property overview</li><li data-property-step="2">Ownership and value</li><li data-property-step="3">Evidence and disputes</li><li data-property-step="4">Housing needs and outcome</li></ol></aside>
         <section class="builder-card interview-card"><form id="propertyForm">
@@ -183,7 +189,7 @@
     </section>
 
     <section id="bankPanel" class="hidden">
-      <div class="active-case-strip"><div><p class="step-label">Current case</p><strong id="bankCaseName"></strong><p id="bankCaseMeta"></p></div><div class="button-row no-margin"><button id="bankBackDashboard" class="button secondary compact" type="button">Case dashboard</button><a id="bankWorkspaceLink" class="button secondary compact" href="https://mckenziecms.co.uk/">Open full workspace</a></div></div>
+      <div class="active-case-strip persistent-case-context"><div><p class="step-label">Current case</p><strong id="bankCaseName" data-case-context-name></strong><p id="bankCaseMeta" data-case-context-meta></p><p class="case-context-secondary"><span data-case-context-stage></span><span data-case-context-updated></span></p></div><div class="button-row no-margin"><button id="bankBackDashboard" class="button secondary compact" type="button">Case dashboard</button><button class="button secondary compact" type="button" data-change-case>Change Case</button><button class="button secondary compact" type="button" data-my-cases>My Cases</button><a id="bankWorkspaceLink" class="button secondary compact" href="https://mckenziecms.co.uk/">Open Full McKenzieCMS Workspace</a></div></div>
       <div class="builder-layout">
         <aside class="progress-card"><p class="step-label">Bank accounts and transferred funds</p><div class="progress-track"><span id="bankProgressBar"></span></div><p id="bankProgressText">Step 1 of 4</p><ol id="bankStepList" class="step-list"><li data-bank-step="1">Accounts and ownership</li><li data-bank-step="2">Balances and transfers</li><li data-bank-step="3">Evidence and explanations</li><li data-bank-step="4">Gaps and proposed treatment</li></ol></aside>
         <section class="builder-card interview-card"><form id="bankForm">
@@ -217,7 +223,7 @@
     </section>
 
     <section id="investigationPanel" class="hidden">
-      <div class="active-case-strip"><div><p class="step-label">Current case</p><strong id="investigationCaseName"></strong><p id="investigationCaseMeta"></p></div><div class="button-row no-margin"><button id="investigationBackDashboard" class="button secondary compact" type="button">Case dashboard</button><a id="investigationWorkspaceLink" class="button secondary compact" href="https://mckenziecms.co.uk/">Open full workspace</a></div></div>
+      <div class="active-case-strip persistent-case-context"><div><p class="step-label">Current case</p><strong id="investigationCaseName" data-case-context-name></strong><p id="investigationCaseMeta" data-case-context-meta></p><p class="case-context-secondary"><span data-case-context-stage></span><span data-case-context-updated></span></p></div><div class="button-row no-margin"><button id="investigationBackDashboard" class="button secondary compact" type="button">Case dashboard</button><button class="button secondary compact" type="button" data-change-case>Change Case</button><button class="button secondary compact" type="button" data-my-cases>My Cases</button><a id="investigationWorkspaceLink" class="button secondary compact" href="https://mckenziecms.co.uk/">Open Full McKenzieCMS Workspace</a></div></div>
       <section class="investigation-v3-intro">
         <div><p class="step-label">CourtReady Investigation Workspace — Version 5.0.1</p><h2>Tell me your story.</h2><p>Type, paste or dictate what happened in ordinary language. CourtReady will separate the account into working facts, possible evidence, missing information, disputed points and dated events, then ask the next useful question.</p><div class="investigation-principles"><span>One point at a time</span><span>Evidence-led</span><span>Nothing published without approval</span></div></div>
         <div class="engine-stats v4"><div><strong id="engineFactCount">0</strong><span>Facts</span></div><div><strong id="engineEvidenceCount">0</strong><span>Evidence</span></div><div><strong id="engineGapCount">0</strong><span>Gaps</span></div><div><strong id="engineIssueCount">0</strong><span>Issues</span></div><div><strong id="engineChronologyCount">0</strong><span>Timeline</span></div></div>

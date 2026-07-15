@@ -1,3 +1,21 @@
+CourtReady Sprint 5.0.4 — Guided First-Use Experience
+
+Improves first use and returning-user orientation inside the Case Builder while preserving the existing McKenzieCMS data model, authentication, publishing and case workflows.
+
+## Sprint 5.0.4 — Guided First-Use Experience
+
+- Adds a calm signed-in welcome with equal routes to existing-case selection and deliberate new-case creation.
+- Explains the five-stage path from case selection through foundation, investigation, review and approved McKenzieCMS publication.
+- Adds compact current-case context across the dashboard, foundation, Property, Finance and Investigation workspaces.
+- Adds a dashboard checklist using Not started, In progress, Foundation complete, Ready for review and Published statuses.
+- Distinguishes Draft, Proposed, Reviewed and Published information with a persistent status guide.
+- Derives a recommended next step from foundation, investigation, proposal, publication and missing-information state.
+- Enhances My Cases cards with foundation status, proposed and published counts, last-updated information and three clear actions.
+- Restores the last explicitly selected case, workspace area, draft answers and unpublished findings for returning users.
+- Adds actionable empty states for cases, foundation progress, investigation findings, proposed records, published records, evidence and timeline information.
+- Replaces broad completion wording with Section complete, Foundation complete, Module complete and Published to case.
+- Adds no tables or SQL and makes no changes to McKenzieCMS authentication, ownership, field mappings or publishing behaviour.
+
 CourtReady Sprint 5.0.3 — Landing Page Feature Showcase
 
 Redesigns the public landing page around CourtReady’s current guided case-building, investigation, evidence-organisation and Case Intelligence capabilities.
