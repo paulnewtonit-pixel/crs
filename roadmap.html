@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CourtReady Roadmap Workspace | CourtReadySupport.co.uk</title>
+    <meta name="description" content="A structured court preparation workspace with roadmap stages, readiness tracking, bundle planning and hearing countdown.">
+    <meta property="og:title" content="CourtReady Roadmap Workspace">
+    <meta property="og:description" content="Understand your current family court stage and prepare the next practical steps.">
+    <meta property="og:image" content="assets/website-hero.png">
+    <link rel="icon" href="assets/crs-logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="roadmap-v4-bottomfix-20260629.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <a class="brand" href="index.html#top" aria-label="CourtReadySupport.co.uk home">
+        <img src="assets/crs-logo.png" alt="" width="64" height="64">
+        <span class="brand-name">CourtReadySupport.co.uk</span>
+        <span class="brand-short">CourtReady Support</span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="menu-lines" aria-hidden="true"></span><span class="sr-only">Menu</span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+        <a href="index.html#support">Support</a>
+        <a href="roadmap.html" aria-current="page">Roadmap</a>
+        <a href="index.html#prepare">Prepare</a>
+        <a href="legal-hub/">Legal hub</a>
+        <a href="index.html#limits">Limits</a>
+        <a href="https://www.mckenziecms.co.uk/">CRS Case Management</a>
+        <a class="nav-action" href="index.html#enquiry">Enquire</a>
+      </nav>
+    </header>
+
+    <main id="main" class="crs-v4-main">
+      <section class="crs-v4-hero">
+        <div>
+          <p class="kicker">Version 4 roadmap workspace</p>
+          <h1>Court preparation, organised around your current stage.</h1>
+          <p class="intro-text">Choose where you are in the family court journey. The workspace updates the tasks, documents, judge focus and bundle items for that stage.</p>
+          <div class="intro-actions">
+            <a class="button primary" href="#workspace">Open workspace</a>
+            <a class="button secondary" href="legal-hub/">Browse legal hub</a>
+          </div>
+        </div>
+        <aside class="crs-v4-note">
+          <strong>Preparation tool, not legal advice</strong>
+          <p>This workspace helps litigants in person organise practical preparation. It does not predict outcomes or replace advice from an authorised legal professional.</p>
+        </aside>
+      </section>
+
+      <section id="workspace" class="crs-v4-shell" aria-label="CourtReady Roadmap Workspace">
+        <div class="crs-v4-topbar">
+          <div>
+            <p class="kicker">Mission Control</p>
+            <h2 id="stage-title">Separation / Immediate problem</h2>
+            <p id="stage-subtitle">Stabilise urgent practical issues and start a clean evidence trail.</p>
+          </div>
+          <div class="crs-v4-scorebox"><span id="overall-score">0%</span><small>overall readiness</small></div>
+        </div>
+
+        <div class="crs-v4-layout">
+          <aside class="crs-v4-sidebar" aria-label="Roadmap stages">
+            <label for="stage-select">Current stage</label>
+            <select id="stage-select"></select>
+            <nav id="stage-nav" class="crs-v4-stage-nav"></nav>
+          </aside>
+
+          <section class="crs-v4-workspace" aria-live="polite">
+            <article class="crs-v4-card crs-v4-stage-card">
+              <div class="crs-v4-card-head">
+                <div><p class="kicker">Current stage guide</p><h3 id="guide-heading">What matters now</h3></div>
+                <span id="stage-pill" class="crs-v4-pill">Stage 01</span>
+              </div>
+              <p id="stage-overview"></p>
+              <div class="crs-v4-two">
+                <div><h4>What usually happens</h4><ul id="happens-list"></ul></div>
+                <div><h4>What to prepare</h4><ul id="prepare-list"></ul></div>
+              </div>
+            </article>
+
+            <article class="crs-v4-card">
+              <div class="crs-v4-card-head"><div><p class="kicker">Tasks</p><h3>Stage readiness checklist</h3></div><span id="task-score" class="crs-v4-pill">0%</span></div>
+              <div class="crs-v4-progress"><span id="task-fill"></span></div>
+              <div id="task-list" class="crs-v4-checklist"></div>
+            </article>
+
+            <article class="crs-v4-card">
+              <div class="crs-v4-card-head"><div><p class="kicker">Bundle Builder</p><h3>Documents to include or consider</h3></div><span id="bundle-score-v4" class="crs-v4-pill">0%</span></div>
+              <div class="crs-v4-progress"><span id="bundle-fill-v4"></span></div>
+              <div id="bundle-list" class="crs-v4-checklist"></div>
+              <div class="crs-v4-actions">
+                <button class="button secondary" type="button" id="copy-index-v4">Copy bundle index</button>
+                <button class="button secondary" type="button" id="show-index-v4">Show index</button>
+              </div>
+              <pre id="bundle-output-v4" class="crs-v4-output" hidden></pre>
+              <p id="copy-status-v4" class="crs-v4-muted" aria-live="polite"></p>
+            </article>
+          </section>
+
+          <aside class="crs-v4-right" aria-label="Preparation summary">
+            <article class="crs-v4-card compact">
+              <p class="kicker">Hearing countdown</p>
+              <label for="hearing-date-v4">Next hearing date</label>
+              <input id="hearing-date-v4" type="date">
+              <strong id="countdown-v4">No date set.</strong>
+            </article>
+
+            <article class="crs-v4-card compact">
+              <p class="kicker">Judge focus</p>
+              <ul id="judge-list" class="crs-v4-simple-list"></ul>
+            </article>
+
+            <article class="crs-v4-card compact">
+              <p class="kicker">Court Confidence</p>
+              <div class="crs-v4-scorebox small"><span id="confidence-score-v4">0%</span><small>confidence</small></div>
+              <div id="confidence-list" class="crs-v4-checklist small"></div>
+            </article>
+
+            <article class="crs-v4-card compact">
+              <p class="kicker">Personal notes</p>
+              <textarea id="notes-v4" rows="7" placeholder="Add private preparation notes for this stage..."></textarea>
+              <p class="crs-v4-muted">Saved in this browser only.</p>
+            </article>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section split roadmap-support-cta">
+        <div>
+          <p class="kicker">Need help applying this to your case?</p>
+          <h2>Turn your current stage into a practical action list.</h2>
+          <p>CourtReadySupport can help organise papers, identify missing documents, prepare hearing notes and create checklists for your next deadline.</p>
+        </div>
+        <div class="limits-grid">
+          <article><h3>Connected tools</h3><ul><li><a href="legal-hub/">Legal hub guides</a></li><li><a href="https://www.mckenziecms.co.uk/">CRS Case Management</a></li><li><a href="https://www.trustlocker.co.uk/">TrustLocker evidence storage</a></li><li><a href="index.html#enquiry">Ask about support</a></li></ul></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div><strong>CourtReadySupport.co.uk</strong><p>Practical court preparation and McKenzie Friend support for litigants in person.</p></div>
+      <nav aria-label="Footer navigation"><a href="index.html">Home</a><a href="legal-hub/">Legal hub</a><a href="privacy.html">Privacy notice</a><a href="index.html#limits">Service boundaries</a></nav>
+    </footer>
+    <script src="script.js"></script>
+    <script src="roadmap-v4-noai-20260629.js" defer></script>
+    <a class="crs-whatsapp-float" href="https://wa.me/447586817284?text=Hello%20CourtReadySupport%2C%20I%20would%20like%20some%20help." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp - CourtReadySupport"><span class="crs-whatsapp-dot" aria-hidden="true">WA</span><span class="crs-whatsapp-text">WhatsApp</span></a>
+  </body>
+</html>

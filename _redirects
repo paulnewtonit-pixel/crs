@@ -1,0 +1,7 @@
+/privacy  /privacy.html  200
+/privacy/ /privacy.html  200
+/legal-hub  /legal-hub/index.html  200
+/legal-hub/ /legal-hub/index.html  200
+/legal-hub.html  /legal-hub/  301
+/casebuilder /casebuilder/ 301
+/casebuilder/* /casebuilder/index.html 200
