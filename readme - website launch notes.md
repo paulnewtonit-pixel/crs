@@ -1,3 +1,16 @@
+CourtReady Sprint 5.0.5 — Investigation Review and Publishing Clarity
+
+## Sprint 5.0.5 — Investigation Review and Publishing Clarity
+
+- Adds a dedicated Review Centre for the selected case, reached from Case Intelligence, the Investigation workspace, the Publication Queue and relevant recommended-next-step prompts.
+- Introduces the review states Draft, Proposed, Reviewed, Approved, Published, Rejected and Failed, with editable wording and recoverable rejected or failed records.
+- Groups proposals into Facts, Supporting Evidence, Matters to Resolve, Information Still Needed, Timeline Events and Actions, with status/category filters and wording/source search.
+- Shows each proposed record's source, evidence/support status, date, related section and intended McKenzieCMS destination before approval.
+- Adds advisory duplicate detection using existing selected-case records. Skip is the default; updating, keeping both or merging requires an explicit decision and final confirmation.
+- Replaces direct list publication with a confirmation step and per-record processing. A failed item remains available for correction or retry without reversing successful records.
+- Adds a session-recoverable Publication Receipt and extends published-record readback with date, destination, source batch and active-state labels.
+- Preserves existing McKenzieCMS authentication, case ownership, database tables and field mappings. No SQL migration is required.
+
 CourtReady Sprint 5.0.4 — Guided First-Use Experience
 
 Improves first use and returning-user orientation inside the Case Builder while preserving the existing McKenzieCMS data model, authentication, publishing and case workflows.
