@@ -2479,7 +2479,7 @@ summary:focus-visible {
 
 .capability-card,
 .comparison-card,
-.platform-flow article,
+.platform-card,
 .intelligence-preview-panel {
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -2492,7 +2492,7 @@ summary:focus-visible {
 }
 
 .capability-card > span,
-.platform-flow article > span,
+.platform-card > span,
 .preview-label,
 .comparison-label {
   color: var(--aqua-dark);
@@ -2533,8 +2533,29 @@ summary:focus-visible {
   margin-top: 28px;
 }
 
-.platform-flow article {
+.platform-card {
+  display: grid;
+  align-content: start;
+  gap: 8px;
   padding: 24px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.platform-card:hover {
+  border-color: var(--aqua-dark);
+  box-shadow: 0 14px 32px rgba(18, 43, 61, 0.14);
+}
+
+.platform-card-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: end;
+  margin-top: 8px;
+  color: var(--aqua-dark);
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .platform-connector {
