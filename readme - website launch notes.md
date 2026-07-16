@@ -10,6 +10,7 @@ CourtReady Sprint 5.0.6 — Evidence Upload and Fact Linking
 - Adds rule-based missing-document findings, unsupported-fact views and advisory evidence duplicate detection.
 - Publishes approved evidence only to the existing McKenzieCMS Evidence destination, with explicit confirmation, failure retention, retry support and evidence-specific publication receipts.
 - Updates Case Health evidence coverage to use linked evidence, completeness and conflicts rather than treating every uploaded or registered document as useful support.
+- Refresh safety: reconciles historical Evidence Workspace records by stable evidence identity, suppresses duplicate native readback, and prevents repeated Save actions from registering the same evidence twice.
 
 CourtReady Sprint 5.0.5 — Investigation Review and Publishing Clarity
 
