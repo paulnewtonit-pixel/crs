@@ -1,3 +1,24 @@
+CourtReady Sprint 5.0.7 — Relationship Engine and Connected Case View
+
+## Sprint 5.0.7 — Relationship Engine and Connected Case View
+
+- Adds a Connected Case workspace for the selected case with live counts for people, facts, evidence, matters to resolve, information still needed, assets and property, accounts and transactions, timeline events, actions and published records.
+- Formalises reviewed, directional many-to-many relationships in an existing structured `case_items` Builder record (`relationship_engine_v507`), including record types, relationship type, explanation, source reference, review and publication status, timestamps and user identity where available.
+- Uses deterministic proposal identities, legacy-link reconciliation, tombstones and serialised case-scoped writes so relationships remain stable across catalogue rebuilds, refreshes and case switching.
+- Reuses Evidence Workspace links and publication receipts in the connected view instead of copying the underlying evidence, facts, timeline records or published records.
+- Adds accessible connected-record cards and a responsive detail panel with grouped direct relationships, relationship counts, source and status information, add/edit/remove controls and publication source-chain navigation.
+- Adds reviewed relationship creation with target search and category filtering, exact duplicate and self-link prevention, optional explanation and source reference, and immediate refresh of both connected records.
+- Adds transparent, rule-based suggestions using shared dates and amounts, account-number suffixes and wording overlap. Suggestions require Accept, Edit and Accept, Dismiss or Not Applicable; none are saved automatically.
+- Adds a rule-based Missing Links view for facts without evidence, unlinked evidence, timeline events without sources, transactions without accounts, assets without ownership information, issues without facts and publication records without source links.
+- Preserves publication outcomes accurately: Published and Updated results create source-chain links, Skipped duplicates remain distinct, and Failed attempts do not improve publication relationship health.
+- Keeps the original module or investigation-account source in each publication receipt so the Source of, Included in, Published as and Duplicate of chain can be reopened after case reload.
+- Shows publication destination, reference and recorded date in the reviewable source-chain view; source-chain receipts that cannot be saved immediately are visibly marked Pending or Unpreserved and queued for retry where browser storage is available.
+- Reconciles evidence by stable identity and last-updated time, edits individual evidence relationships without replacing sibling links, and prevents exact directional duplicates across Evidence Workspace and Connected Case records.
+- Uses direction-aware relationship rules for health and missing-link checks so incoming evidence/source links and outgoing ownership, account and publication links are counted consistently.
+- Extends Case Health with organisation and traceability indicators for linked facts, evidence, timeline events, issues, transactions, assets and published source chains. These indicators do not assess legal merits or prospects.
+- Preserves reviewed publication controls, McKenzieCMS authentication and field mappings, case ownership, existing modules, duplicate-evidence handling and responsive CourtReady branding.
+- Uses a structured list and column-based explorer rather than a decorative graph. No database table, column or SQL migration is required.
+
 CourtReady Sprint 5.0.6 — Evidence Upload and Fact Linking
 
 ## Sprint 5.0.6 — Evidence Upload and Fact Linking
