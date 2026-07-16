@@ -1,3 +1,19 @@
+CourtReady Version 5.1 — Calm Guided Workspace
+
+## Version 5.1 — Calm Guided Workspace
+
+- Introduces Guided View as the default, showing the selected case, one recommended next step, a concise case summary and important attention items.
+- Retains Full Workspace with the complete Case Intelligence dashboard, filters, evidence metadata, Relationship Engine, publication history and technical controls introduced through Version 5.0.7.
+- Adds browser-saved Guided View and Full Workspace preference without database or SQL changes.
+- Uses accessible progressive disclosure for what CourtReady understands, documents and evidence, timeline information, unresolved matters, review work and Advanced Tools.
+- Simplifies My Cases cards to a concise case identity, status and Continue action, with secondary metadata and workspace links inside More.
+- Adds a short guided navigation containing My Cases, Continue My Case, Documents and Evidence, Check What CourtReady Identified and Help.
+- Uses plain-language Guided View labels such as Important points, What may be missing, What happened and when, Connected information and Add approved information to my case.
+- Reduces first-time complexity to a five-step journey while preserving explicit review and final McKenzieCMS publication confirmation.
+- Keeps critical errors, failed saves, failed publications, deadlines and important evidence gaps visible; relevant Guided View disclosures open automatically when attention is required.
+- Preserves all existing case, Property, Finance, Investigation, Evidence, Review, Case Health, relationship and McKenzieCMS behaviour. No functionality was removed.
+- Defers Focus Mode because the current structured data cannot reliably distinguish all requested focus areas without broader case-type inference and regression risk.
+
 CourtReady Sprint 5.0.7 — Relationship Engine and Connected Case View
 
 ## Sprint 5.0.7 — Relationship Engine and Connected Case View
