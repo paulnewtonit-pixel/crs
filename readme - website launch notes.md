@@ -1,3 +1,16 @@
+CourtReady Sprint 5.0.6 — Evidence Upload and Fact Linking
+
+## Sprint 5.0.6 — Evidence Upload and Fact Linking
+
+- Adds a dedicated Evidence Workspace for the selected case, with calculated totals for linked, unlinked, incomplete, conflicting and missing evidence.
+- Supports controlled registration of existing McKenzieCMS evidence records. Direct browser upload is intentionally unavailable because this repository contains no reusable storage bucket, upload function, MIME/size policy or storage RLS contract.
+- Adds document metadata covering type, date, source, file reference, completeness, original-document status, evidential role and sensitivity notes.
+- Allows one evidence item to link to multiple facts, issues, gaps, timeline events, assets, transactions, people, property and financial records, including relationship type and optional page, paragraph, transaction or image references.
+- Persists draft evidence metadata and relationship maps in an existing structured `case_items` Builder record; no new table, column or SQL migration is required.
+- Adds rule-based missing-document findings, unsupported-fact views and advisory evidence duplicate detection.
+- Publishes approved evidence only to the existing McKenzieCMS Evidence destination, with explicit confirmation, failure retention, retry support and evidence-specific publication receipts.
+- Updates Case Health evidence coverage to use linked evidence, completeness and conflicts rather than treating every uploaded or registered document as useful support.
+
 CourtReady Sprint 5.0.5 — Investigation Review and Publishing Clarity
 
 ## Sprint 5.0.5 — Investigation Review and Publishing Clarity
