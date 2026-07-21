@@ -275,3 +275,15 @@ Build 3.0 is a transparent guided analysis engine, not unrestricted generative A
 - Detects mentioned financial amounts for separate tracing and verification.
 - Adds a live current-line-of-enquiry card and timeline counter.
 - Preserves explicit review and approval before publication to McKenzieCMS.
+
+## Version 5.2 — ES2 Asset Schedule Analysis
+
+- Adds an ES2-inspired working asset schedule without describing it as an official ES2 document.
+- Compares applicant, respondent, documentary and user-selected Working Figures side by side.
+- Adds ownership, beneficial-ownership, valuation-status and documentary-source analysis.
+- Calculates transparent column totals, party differences and configurable percentage-difference bands.
+- Detects potentially stale valuations and rule-based missing-information prompts.
+- Links working asset records to existing evidence, facts, timeline, disclosure, questionnaire and relationship records.
+- Routes asset records and proposed Information Still Needed items through the Review Centre.
+- Excludes calculated totals from publication to McKenzieCMS.
+- Adds responsive desktop tables, tablet cards and mobile stacked records.
