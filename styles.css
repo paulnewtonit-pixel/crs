@@ -2491,6 +2491,42 @@ summary:focus-visible {
   padding: 22px;
 }
 
+.capability-card-featured {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(47, 138, 134, 0.45);
+  background: linear-gradient(135deg, var(--mist), var(--white));
+}
+
+.capability-card-featured::after {
+  position: absolute;
+  right: -54px;
+  bottom: -64px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: rgba(47, 138, 134, 0.08);
+  content: "";
+  pointer-events: none;
+}
+
+.capability-card-featured p {
+  max-width: 920px;
+}
+
+.capability-link {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 12px;
+  color: var(--aqua-dark);
+  font-weight: 900;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
 .capability-card > span,
 .platform-card > span,
 .preview-label,
@@ -2620,6 +2656,10 @@ summary:focus-visible {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .capability-card-featured {
+    grid-column: 1 / -1;
+  }
+
   .comparison-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2638,6 +2678,10 @@ summary:focus-visible {
 @media (min-width: 820px) {
   .capability-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .capability-card-featured {
+    grid-column: 1 / -1;
   }
 
   .platform-flow {
