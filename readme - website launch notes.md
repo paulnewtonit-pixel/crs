@@ -287,3 +287,15 @@ Build 3.0 is a transparent guided analysis engine, not unrestricted generative A
 - Routes asset records and proposed Information Still Needed items through the Review Centre.
 - Excludes calculated totals from publication to McKenzieCMS.
 - Adds responsive desktop tables, tablet cards and mobile stacked records.
+
+## Version 5.3 — Income, Needs and Affordability Analysis
+
+- Adds separate Applicant and Respondent monthly income and expenditure records.
+- Calculates income, expenditure, scenario adjustments and projected monthly surplus or shortfall transparently.
+- Records source, evidence date and notes for every financial category.
+- Adds housing capital requirement, mortgage capacity and capital-gap calculations.
+- Imports reviewable suggestions from the existing Form E Analysis without overwriting the source analysis.
+- Flags unsourced and potentially stale figures and missing mortgage-capacity information.
+- Routes selected working records and missing-information prompts through the Review Centre.
+- Excludes calculated totals from publication and makes no settlement recommendation.
+- Adds responsive desktop, tablet, mobile and print layouts.
