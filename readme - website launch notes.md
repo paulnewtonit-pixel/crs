@@ -299,3 +299,15 @@ Build 3.0 is a transparent guided analysis engine, not unrestricted generative A
 - Routes selected working records and missing-information prompts through the Review Centre.
 - Excludes calculated totals from publication and makes no settlement recommendation.
 - Adds responsive desktop, tablet, mobile and print layouts.
+
+## Version 5.4 — Pension Analysis
+
+- Adds individual pension records for Applicant, Respondent and unclear ownership.
+- Records scheme type, status, CETV, valuation date, projected annual income and retirement ages.
+- Keeps CETV capital arithmetic separate from retirement-income information.
+- Adds transparent user-selected sharing directions and percentages without recommending an outcome.
+- Imports reviewable pension suggestions from Form E Analysis and the working Asset Schedule.
+- Flags stale CETVs, missing statements, missing income projections and mismatched sharing directions.
+- Identifies defined-benefit and public-sector records where specialist review has not been assessed.
+- Routes pension records and missing-information prompts through the Review Centre.
+- Excludes calculated totals from publication and adds responsive and print layouts.
