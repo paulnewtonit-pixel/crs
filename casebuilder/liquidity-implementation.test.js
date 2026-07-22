@@ -6,7 +6,7 @@ assert.deepStrictEqual(result,{itemTotal:70000,taxTotal:10000,confirmed:20000,es
 const html=fs.readFileSync(__dirname+'/index.html','utf8'),controller=fs.readFileSync(__dirname+'/casebuilder.js','utf8'),moduleSource=fs.readFileSync(__dirname+'/liquidity-implementation.js','utf8');
 assert.match(html,/liquidity-implementation\.js\?v=5\.6\.1/);
 assert.match(html,/liquidity-implementation\.css\?v=5\.6\.1/);
-assert.match(html,/casebuilder\.js\?v=5\.6\.1/);
+assert.match(html,/casebuilder\.js\?v=20260722/);
 assert.match(controller,/dashboardLiquidityAnalysis'\)\.addEventListener\('click',openLiquidityAnalysis\)/);
 assert.match(controller,/CourtReadyOpenLiquidityAnalysis=openLiquidityAnalysis/);
 assert.match(moduleSource,/Not a tax calculation|does not apply tax law|no tax calculation/i);

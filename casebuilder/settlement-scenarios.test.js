@@ -6,7 +6,7 @@ assert.deepStrictEqual(result,{costs:20000,distributable:480000,allocated:480000
 const html=fs.readFileSync(__dirname+'/index.html','utf8'),controller=fs.readFileSync(__dirname+'/casebuilder.js','utf8');
 assert.match(html,/settlement-scenarios\.js\?v=5\.5\.1/);
 assert.match(html,/settlement-scenarios\.css\?v=5\.5\.1/);
-assert.match(html,/casebuilder\.js\?v=5\.6\.1/);
+assert.match(html,/casebuilder\.js\?v=20260722/);
 assert.match(controller,/dashboardSettlementScenarios'\)\.addEventListener\('click',openSettlementScenarios\)/);
 assert.match(controller,/CourtReadyOpenSettlementScenarios=openSettlementScenarios/);
 assert.match(fs.readFileSync(__dirname+'/settlement-scenarios.js','utf8'),/Without prejudice scenarios cannot be sent/);

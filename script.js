@@ -5,7 +5,7 @@ const publicSiteFooter = document.querySelector("body > .site-footer");
 if (publicSiteFooter && !publicSiteFooter.querySelector(".site-version")) {
   const siteVersion = document.createElement("span");
   siteVersion.className = "site-version";
-  siteVersion.textContent = "Version 5.6";
+  siteVersion.textContent = "Version 5.7";
   publicSiteFooter.append(siteVersion);
 }
 

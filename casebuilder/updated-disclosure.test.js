@@ -1,0 +1,11 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+let sequence=0;const sandbox={window:{},document:{addEventListener:()=>{},getElementById:()=>({})},localStorage:{getItem:()=>null,setItem:()=>{}},crypto:{randomUUID:()=>`id-${++sequence}`},Intl,Date,Number,JSON,console};
+vm.createContext(sandbox);vm.runInContext(fs.readFileSync(__dirname+'/updated-disclosure.js','utf8'),sandbox);
+const result=JSON.parse(JSON.stringify(sandbox.window.CourtReadyUpdatedDisclosure.diagnostics()));
+assert.deepStrictEqual(result.results,[{changeType:'Increase',difference:15000,material:true},{changeType:'Decrease',difference:-6000,material:true}]);
+assert.deepStrictEqual(result.totals,{count:2,changed:2,material:2,applicant:1,respondent:1,disputed:0,missing:0});
+const html=fs.readFileSync(__dirname+'/index.html','utf8'),controller=fs.readFileSync(__dirname+'/casebuilder.js','utf8');
+assert.match(html,/updated-disclosure\.js\?v=20260722/);assert.match(html,/updated-disclosure\.css\?v=20260722/);assert.match(html,/updatedDisclosurePanel/);
+assert.match(controller,/dashboardUpdatedDisclosure'\)\.addEventListener\('click',openUpdatedDisclosure\)/);
+assert.match(controller,/CourtReadyUpdatedDisclosure/);
+console.log('Updated Disclosure and Financial Change diagnostics passed.');
