@@ -1,0 +1,13 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+let sequence=0;const sandbox={window:{},document:{addEventListener:()=>{},getElementById:()=>({})},localStorage:{getItem:()=>null,setItem:()=>{}},crypto:{randomUUID:()=>`id-${++sequence}`},Intl,Date,Number,JSON,console};
+vm.createContext(sandbox);vm.runInContext(fs.readFileSync(__dirname+'/settlement-scenarios.js','utf8'),sandbox);
+const result=JSON.parse(JSON.stringify(sandbox.window.CourtReadySettlementScenarios.diagnostics()));
+assert.deepStrictEqual(result,{costs:20000,distributable:480000,allocated:480000,unallocated:0,applicantCapitalPercent:54.166666666666664,respondentCapitalPercent:45.83333333333333,applicantHousingGap:10000,respondentHousingGap:30000,applicantMonthly:500,respondentMonthly:1000,applicantPensionPercent:50,respondentPensionPercent:50,applicantLiquidity:0,respondentLiquidity:0});
+const html=fs.readFileSync(__dirname+'/index.html','utf8'),controller=fs.readFileSync(__dirname+'/casebuilder.js','utf8');
+assert.match(html,/settlement-scenarios\.js\?v=5\.5\.1/);
+assert.match(html,/settlement-scenarios\.css\?v=5\.5\.1/);
+assert.match(html,/casebuilder\.js\?v=5\.5\.1/);
+assert.match(controller,/dashboardSettlementScenarios'\)\.addEventListener\('click',openSettlementScenarios\)/);
+assert.match(controller,/CourtReadyOpenSettlementScenarios=openSettlementScenarios/);
+assert.match(fs.readFileSync(__dirname+'/settlement-scenarios.js','utf8'),/Without prejudice scenarios cannot be sent/);
+console.log('Settlement Scenario calculation diagnostics passed.');

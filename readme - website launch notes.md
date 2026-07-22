@@ -311,3 +311,15 @@ Build 3.0 is a transparent guided analysis engine, not unrestricted generative A
 - Identifies defined-benefit and public-sector records where specialist review has not been assessed.
 - Routes pension records and missing-information prompts through the Review Centre.
 - Excludes calculated totals from publication and adds responsive and print layouts.
+
+## Version 5.5 — Settlement Scenario Analysis
+
+- Adds multiple named, user-entered settlement scenarios with side-by-side comparison.
+- Reads a current baseline from the saved Asset Schedule, Income and Needs, and Pension Analysis.
+- Compares capital allocations, liquidity, housing gaps, monthly affordability and pension CETVs separately.
+- Records sale costs, estimated tax, other implementation costs, dates, property outcomes and refinancing status.
+- Identifies unallocated or over-allocated capital and missing source assumptions.
+- Preserves CETV comparisons separately from pension-income consequences.
+- Blocks without-prejudice scenarios from the publication Review Centre.
+- Routes open working scenarios and missing-information prompts through the Review Centre.
+- Makes no recommendation, fairness assessment or prediction and adds responsive and print layouts.
