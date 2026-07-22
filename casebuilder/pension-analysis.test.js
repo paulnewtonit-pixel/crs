@@ -3,4 +3,10 @@ let sequence=0;const sandbox={window:{},document:{addEventListener:()=>{},getEle
 vm.createContext(sandbox);vm.runInContext(fs.readFileSync(__dirname+'/pension-analysis.js','utf8'),sandbox);
 const result=JSON.parse(JSON.stringify(sandbox.window.CourtReadyPensionAnalysis.diagnostics()));
 assert.deepStrictEqual(result,{applicantCetv:200000,respondentCetv:100000,applicantIncome:9000,respondentIncome:6000,applicantPost:150000,respondentPost:150000,transferDifference:100000,transfer:50000,incomeUnchanged:true});
+const html=fs.readFileSync(__dirname+'/index.html','utf8'),controller=fs.readFileSync(__dirname+'/casebuilder.js','utf8');
+assert.match(html,/pension-analysis\.js\?v=5\.4\.1/);
+assert.match(html,/casebuilder\.js\?v=5\.4\.1/);
+assert.match(controller,/dashboardPensionAnalysis'\)\.addEventListener\('click',openPensionAnalysis\)/);
+assert.match(controller,/CourtReadyOpenPensionAnalysis=openPensionAnalysis/);
+assert.match(controller,/Pension Analysis did not load/);
 console.log('Pension Analysis calculation diagnostics passed.');
