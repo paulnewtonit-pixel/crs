@@ -1,0 +1,13 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+let sequence=0;const sandbox={window:{},document:{addEventListener:()=>{},getElementById:()=>({})},localStorage:{getItem:()=>null,setItem:()=>{}},crypto:{randomUUID:()=>`id-${++sequence}`},Intl,Date,Number,JSON,console};
+vm.createContext(sandbox);vm.runInContext(fs.readFileSync(__dirname+'/liquidity-implementation.js','utf8'),sandbox);
+const result=JSON.parse(JSON.stringify(sandbox.window.CourtReadyLiquidityAnalysis.diagnostics()));
+assert.deepStrictEqual(result,{itemTotal:70000,taxTotal:10000,confirmed:20000,estimated:50000,applicantRequired:25000,respondentRequired:5000,jointRequired:50000,totalRequired:80000,applicantGap:-5000,respondentGap:-15000,jointGap:0});
+const html=fs.readFileSync(__dirname+'/index.html','utf8'),controller=fs.readFileSync(__dirname+'/casebuilder.js','utf8'),moduleSource=fs.readFileSync(__dirname+'/liquidity-implementation.js','utf8');
+assert.match(html,/liquidity-implementation\.js\?v=5\.6\.1/);
+assert.match(html,/liquidity-implementation\.css\?v=5\.6\.1/);
+assert.match(html,/casebuilder\.js\?v=5\.6\.1/);
+assert.match(controller,/dashboardLiquidityAnalysis'\)\.addEventListener\('click',openLiquidityAnalysis\)/);
+assert.match(controller,/CourtReadyOpenLiquidityAnalysis=openLiquidityAnalysis/);
+assert.match(moduleSource,/Not a tax calculation|does not apply tax law|no tax calculation/i);
+console.log('Liquidity, Tax and Implementation calculation diagnostics passed.');

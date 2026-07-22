@@ -323,3 +323,15 @@ Build 3.0 is a transparent guided analysis engine, not unrestricted generative A
 - Blocks without-prejudice scenarios from the publication Review Centre.
 - Routes open working scenarios and missing-information prompts through the Review Centre.
 - Makes no recommendation, fairness assessment or prediction and adds responsive and print layouts.
+
+## Version 5.6 — Liquidity, Tax and Implementation Analysis
+
+- Links a working implementation plan to a saved Settlement Scenario.
+- Compares Applicant, Respondent and joint or sale-proceeds cash with allocated costs and reserves.
+- Records adviser-sourced tax estimates without applying tax rules or calculating liability.
+- Tracks property costs, mortgage charges, professional fees, pension implementation, debts and other deductions.
+- Records the responsible person, funding responsibility, due date, source, dependency and implementation status.
+- Imports and refreshes costs already recorded in the linked Settlement Scenario.
+- Flags party and joint funding gaps, overdue actions, missing sources and unsupported tax estimates.
+- Routes individual records and missing-information prompts through the Review Centre.
+- Excludes aggregate totals from publication and adds responsive and print layouts.
